@@ -22,7 +22,7 @@ const CategoryList = () => {
         {categoryList &&
           categoryList.map((category, index) => (
             <div
-              className="flex flex-col items-center gap-2 border p-3 rounded-xl min-w-28"
+              className="flex flex-col items-center gap-2 border p-3 rounded-xl min-w-28 hover:border-primary hover:bg-orange-50 cursor-pointer group"
               key={index}
             >
               <Image
@@ -30,8 +30,9 @@ const CategoryList = () => {
                 alt={category.name}
                 width={40}
                 height={40}
+                className="group-hover:scale-110 transition-all duration-2"
               />
-              <h2 className="">{category.name}</h2>
+              <h2 className="text-sm font-medium">{category.name}</h2>
             </div>
           ))}
       </div>
