@@ -11,10 +11,12 @@ const CategoryList = () => {
   const listRef = useRef(null);
 
   const [categoryList, setCategoryList] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+
   const params = useSearchParams();
 
   useEffect(() => {
-    console.log(params.get("category"));
+    setSelectedCategory(params.get("category"));
   }, [params]);
 
   useEffect(() => {
@@ -51,7 +53,10 @@ const CategoryList = () => {
           categoryList.map((category, index) => (
             <Link
               href={"?category=" + category.slug}
-              className="flex flex-col items-center gap-2 border p-3 rounded-xl min-w-28 hover:border-primary hover:bg-orange-50 cursor-pointer group"
+              className={`flex flex-col items-center gap-2 border p-3 rounded-xl min-w-28 hover:border-primary hover:bg-orange-50 cursor-pointer group ${
+                selectedCategory == category.slug &&
+                "text-primary border-primary bg-orange-50"
+              }`}
               key={index}
             >
               <Image
