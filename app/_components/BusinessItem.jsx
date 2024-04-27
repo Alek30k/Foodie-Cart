@@ -12,11 +12,13 @@ const BusinessItem = ({ business }) => {
       />
       <div className="mt-2">
         <h2 className="font-bold text-lg">{business.name}</h2>
-        <div className="flex gap-2 items-center">
-          <div className="">
+        <div className="flex justify-between items-center">
+          <div className="flex gap-2 items-center">
             <Image src="/star.png" alt="star" width={14} height={14} />
-            <label htmlFor="">4.5</label>
+            <label className="text-gray-400 text-sm">4.5</label>
+            <h2 className="text-gray-400 text-sm">{business.restroType[0]}</h2>
           </div>
+          <h2 className="">{business.categories[0].name}</h2>
         </div>
       </div>
     </div>
