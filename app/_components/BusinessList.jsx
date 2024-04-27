@@ -7,7 +7,7 @@ import GlobalApi from "../_utils/GlobalApi";
 const BusinessList = () => {
   const params = useSearchParams();
   const [category, setCategory] = useState("all");
-  const [businessList, setBusinessList] = useState();
+  const [businessList, setBusinessList] = useState([]);
 
   useEffect(() => {
     params && setCategory(params.get("category"));
@@ -16,11 +16,14 @@ const BusinessList = () => {
 
   const getBusinessList = (category_) => {
     GlobalApi.GetBusiness(category_).then((resp) => {
-      console.log(resp);
+      setBusinessList(resp?.restaurants);
     });
-
-    return <div className="">BusinessList</div>;
   };
+  return (
+    <div className="">
+      <h2>Popular {category} Restaurants</h2>
+    </div>
+  );
 };
 
 export default BusinessList;
