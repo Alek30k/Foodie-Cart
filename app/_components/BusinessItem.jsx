@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const BusinessItem = ({ business }) => {
   return (
-    <div className="">
+    <div className="p-3 hover:border rounded-xl hover:border-primary transition-all  ease-in-out hover:bg-orange-50 cursor-pointer">
       <Image
         src={business.banner?.url}
         alt={business.name}
@@ -18,7 +18,9 @@ const BusinessItem = ({ business }) => {
             <label className="text-gray-400 text-sm">4.5</label>
             <h2 className="text-gray-400 text-sm">{business.restroType[0]}</h2>
           </div>
-          <h2 className="">{business.categories[0].name}</h2>
+          <h2 className="text-sm text-primary">
+            {business.categories[0].name}
+          </h2>
         </div>
       </div>
     </div>
