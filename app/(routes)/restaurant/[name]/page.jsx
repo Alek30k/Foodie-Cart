@@ -1,8 +1,10 @@
 "use client";
 
 import GlobalApi from "@/app/_utils/GlobalApi";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import Intro from "../_components/Intro";
 
 const RestaurantDetails = () => {
   const params = usePathname();
@@ -18,7 +20,11 @@ const RestaurantDetails = () => {
     });
   };
 
-  return <div className="">RestaurantDetails</div>;
+  return (
+    <div className="">
+      <Intro restaurant={restaurant} />
+    </div>
+  );
 };
 
 export default RestaurantDetails;
