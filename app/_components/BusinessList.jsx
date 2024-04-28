@@ -9,6 +9,7 @@ const BusinessList = () => {
   const params = useSearchParams();
   const [category, setCategory] = useState("all");
   const [businessList, setBusinessList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     params && setCategory(params.get("category"));
@@ -16,8 +17,10 @@ const BusinessList = () => {
   }, [params]);
 
   const getBusinessList = (category_) => {
+    setLoading(true);
     GlobalApi.GetBusiness(category_).then((resp) => {
       setBusinessList(resp?.restaurants);
+      setLoading(false);
     });
   };
   return (
