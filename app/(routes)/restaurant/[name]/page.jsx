@@ -1,4 +1,6 @@
 const RestaurantDetails = () => {
+  const getRestaurantDetail = () => {};
+
   return <div className="">RestaurantDetails</div>;
 };
 

@@ -1,8 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const BusinessItem = ({ business }) => {
   return (
-    <div className="p-3 hover:border rounded-xl hover:border-primary transition-all  ease-in-out hover:bg-orange-50 cursor-pointer">
+    <Link
+      href={`/restaurant/${business?.slug}`}
+      className="p-3 hover:border rounded-xl hover:border-primary transition-all  ease-in-out hover:bg-orange-50 cursor-pointer"
+    >
       <Image
         src={business.banner?.url}
         alt={business.name}
@@ -23,7 +27,7 @@ const BusinessItem = ({ business }) => {
           </h2>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
