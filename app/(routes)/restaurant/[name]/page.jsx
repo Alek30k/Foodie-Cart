@@ -2,18 +2,19 @@
 
 import GlobalApi from "@/app/_utils/GlobalApi";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const RestaurantDetails = () => {
   const params = usePathname();
+  const [restaurant, setRestaurant] = useState([]);
 
   useEffect(() => {
-    console.log(params);
+    getRestaurantDetail(params.split("/")[2]);
   }, []);
 
-  const getRestaurantDetail = () => {
-    GlobalApi.GetBusinessDetail().then((resp) => {
-      console.log(resp);
+  const getRestaurantDetail = (restroSlug) => {
+    GlobalApi.GetBusinessDetail(restroSlug).then((resp) => {
+      setRestaurant(resp.restaurant);
     });
   };
 
