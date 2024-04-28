@@ -34,7 +34,7 @@ const BusinessList = () => {
               <BusinessItem key={index} business={restaurants} />
             ))
           : [1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => (
-              <BusinessItemSkeleton />
+              <BusinessItemSkeleton key={index} />
             ))}
       </div>
     </div>
