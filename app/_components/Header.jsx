@@ -4,13 +4,16 @@ import { Button } from "@/components/ui/button";
 import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
 import { Search } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Header = () => {
   const { user, isSignedIn } = useUser();
 
   return (
     <div className="flex justify-between items-center p-6 md:px-20 shadow-md">
-      <Image src="/logo.png" alt="logo" width={200} height={200} />
+      <Link href="/">
+        <Image src="/logo.png" alt="logo" width={200} height={200} />
+      </Link>
       <div className="hidden md:flex border p-2 rounded-lg bg-gray-200 w-96">
         <input type="text" className="bg-transparent w-full" />
         <Search className="text-primary" />
