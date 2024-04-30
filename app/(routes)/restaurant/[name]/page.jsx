@@ -24,7 +24,7 @@ const RestaurantDetails = () => {
   return (
     <div className="">
       <Intro restaurant={restaurant} />
-      <RestroTabs />
+      <RestroTabs restaurant={restaurant} />
     </div>
   );
 };

@@ -1,16 +1,19 @@
+import MenuSection from "@/app/_components/MenuSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const RestroTabs = () => {
+const RestroTabs = ({ restaurant }) => {
   return (
-    <Tabs defaultValue="account" className="w-[400px]">
+    <Tabs defaultValue="category" className="w-full mt-10">
       <TabsList>
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="password">Password</TabsTrigger>
+        <TabsTrigger value="category">Category</TabsTrigger>
+        <TabsTrigger value="about">About</TabsTrigger>
+        <TabsTrigger value="reviews">Reviews</TabsTrigger>
       </TabsList>
-      <TabsContent value="account">
-        Make changes to your account here.
+      <TabsContent value="category">
+        <MenuSection restaurant={restaurant} />
       </TabsContent>
-      <TabsContent value="password">Change your password here.</TabsContent>
+      <TabsContent value="about">about</TabsContent>
+      <TabsContent value="reviews">reviews</TabsContent>
     </Tabs>
   );
 };
