@@ -103,12 +103,14 @@ const AddToCart = async (data) => {
         data: {email: "` +
     data?.email +
     `", price: ` +
-    data?.price +
+    data.price +
     `, productDescription: "` +
     data.description +
     `", productImage: "` +
     data.productImage +
-    `", productName: ""}
+    `", productName: "` +
+    data.name +
+    `"}
       ) {
         id
       }
@@ -126,4 +128,5 @@ export default {
   GetCategory,
   GetBusiness,
   GetBusinessDetail,
+  AddToCart,
 };
