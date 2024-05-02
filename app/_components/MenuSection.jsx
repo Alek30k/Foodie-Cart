@@ -4,14 +4,17 @@ import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/nextjs";
 import { SquarePlus } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import GlobalApi from "../_utils/GlobalApi";
 import { toast } from "sonner";
+import { CartUpdateContext } from "../_context/CartUpdateContext";
 
 const MenuSection = ({ restaurant }) => {
   const [menuItemList, setMenuItemList] = useState([]);
 
   const { user } = useUser();
+
+  const { updateCart, setUpdateCart } = useContext(CartUpdateContext);
 
   useEffect(() => {
     restaurant?.menu && FilterMenu(restaurant?.menu[0]?.category);
@@ -36,6 +39,7 @@ const MenuSection = ({ restaurant }) => {
     };
     GlobalApi.AddToCart(data).then(
       (resp) => {
+        setUpdateCart(!updateCart);
         toast("Added to Cart");
       },
       (err) => {

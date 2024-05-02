@@ -5,9 +5,17 @@ import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
 import { Search, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
+import { CartUpdateContext } from "../_context/CartUpdateContext";
 
 const Header = () => {
   const { user, isSignedIn } = useUser();
+
+  const { updateCart, setUpdateCart } = useContext(CartUpdateContext);
+
+  useEffect(() => {
+    console.log("Execute me!");
+  }, [updateCart]);
 
   return (
     <div className="flex justify-between items-center p-6 md:px-20 shadow-md">

@@ -126,9 +126,31 @@ const AddToCart = async (data) => {
   return result;
 };
 
+const GetUserCart = async (userEmail) => {
+  const query =
+    gql`
+    query GetUserCart {
+      userCarts(where: {email: "` +
+    userEmail +
+    `"}) {
+        id
+        price
+        productDescription
+        productImage
+        productName
+      }
+    }
+    
+  `;
+
+  const result = await request(MASTER_URL, query);
+  return result;
+};
+
 export default {
   GetCategory,
   GetBusiness,
   GetBusinessDetail,
   AddToCart,
+  GetUserCart,
 };
