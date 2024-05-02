@@ -114,7 +114,9 @@ const AddToCart = async (data) => {
       ) {
         id
       }
-      publishManyUserCarts(to: PUBLISHED)
+      publishManyUserCarts(to: PUBLISHED) {
+        count
+      }
     }
     
     

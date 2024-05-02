@@ -36,7 +36,6 @@ const MenuSection = ({ restaurant }) => {
     };
     GlobalApi.AddToCart(data).then(
       (resp) => {
-        console.log(resp);
         toast("Added to Cart");
       },
       (err) => {
