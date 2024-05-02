@@ -1,12 +1,17 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { useUser } from "@clerk/nextjs";
 import { SquarePlus } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import GlobalApi from "../_utils/GlobalApi";
+import { toast } from "sonner";
 
 const MenuSection = ({ restaurant }) => {
   const [menuItemList, setMenuItemList] = useState([]);
+
+  const { user } = useUser();
 
   useEffect(() => {
     restaurant?.menu && FilterMenu(restaurant?.menu[0]?.category);
@@ -17,6 +22,27 @@ const MenuSection = ({ restaurant }) => {
       (item) => item.category == category
     );
     setMenuItemList(result[0]);
+  };
+
+  const addToCartHandler = (item) => {
+    toast("Adding to Cart");
+
+    const data = {
+      email: user?.primaryEmailAddress?.emailAddress,
+      name: item?.name,
+      description: item?.description,
+      productImage: item?.productImage.url,
+      price: item?.price,
+    };
+    GlobalApi.AddToCart(data).then(
+      (resp) => {
+        console.log(resp);
+        toast("Added to Cart");
+      },
+      (err) => {
+        toast("Error while adding into the Cart");
+      }
+    );
   };
 
   return (
@@ -37,8 +63,11 @@ const MenuSection = ({ restaurant }) => {
         <div className="md:col-span-3 col-span-4">
           <h2 className="font-extrabold text-lg">{menuItemList.category}</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-5">
-            {menuItemList?.menuItem?.map((item, undex) => (
-              <div className="p-2 flex gap-3 border rounded-xl hover:border-primary cursor-pointer">
+            {menuItemList?.menuItem?.map((item, index) => (
+              <div
+                className="p-2 flex gap-3 border rounded-xl hover:border-primary cursor-pointer"
+                key={index}
+              >
                 <Image
                   src={item?.productImage.url}
                   alt={item.name}
@@ -52,7 +81,10 @@ const MenuSection = ({ restaurant }) => {
                   <h2 className="text-sm text-gray-400 line-clamp-2">
                     {item.description}
                   </h2>
-                  <SquarePlus />
+                  <SquarePlus
+                    className="cursor-pointer"
+                    onClick={() => addToCartHandler(item)}
+                  />
                 </div>
               </div>
             ))}
