@@ -3,10 +3,14 @@
 import { Button } from "@/components/ui/button";
 import { SquarePlus } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const MenuSection = ({ restaurant }) => {
   const [menuItemList, setMenuItemList] = useState([]);
+
+  useEffect(() => {
+    restaurant?.menu && FilterMenu(restaurant?.menu[0]?.category);
+  }, [restaurant]);
 
   const FilterMenu = (category) => {
     const result = restaurant?.menu?.filter(
@@ -30,7 +34,7 @@ const MenuSection = ({ restaurant }) => {
             </Button>
           ))}
         </div>
-        <div className="col-span-3">
+        <div className="md:col-span-3 col-span-4">
           <h2 className="font-extrabold text-lg">{menuItemList.category}</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-5">
             {menuItemList?.menuItem?.map((item, undex) => (

@@ -17,6 +17,10 @@ const BusinessList = () => {
     params && getBusinessList(params.get("category"));
   }, [params]);
 
+  useEffect(() => {
+    getBusinessList("all");
+  }, []);
+
   const getBusinessList = (category_) => {
     setLoading(true);
     GlobalApi.GetBusiness(category_).then((resp) => {

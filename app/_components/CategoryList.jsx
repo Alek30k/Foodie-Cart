@@ -19,6 +19,10 @@ const CategoryList = () => {
     setSelectedCategory(params.get("category"));
   }, [params]);
 
+  // useEffect(() => {
+  //   setSelectedCategory("all");
+  // }, []);
+
   useEffect(() => {
     getCategoryList();
   }, []);

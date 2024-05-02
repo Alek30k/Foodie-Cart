@@ -48,6 +48,7 @@ const GetBusiness = async (category) => {
   const result = await request(MASTER_URL, query);
   return result;
 };
+
 const GetBusinessDetail = async (businessSlug) => {
   const query =
     gql`
@@ -87,6 +88,33 @@ const GetBusinessDetail = async (businessSlug) => {
         }
       }
     }
+    
+  `;
+
+  const result = await request(MASTER_URL, query);
+  return result;
+};
+
+const AddToCart = async (data) => {
+  const query =
+    gql`
+    mutation AddToCart {
+      createUserCart(
+        data: {email: "` +
+    data?.email +
+    `", price: ` +
+    data?.price +
+    `, productDescription: "` +
+    data.description +
+    `", productImage: "` +
+    data.productImage +
+    `", productName: ""}
+      ) {
+        id
+      }
+      publishManyUserCarts(to: PUBLISHED)
+    }
+    
     
   `;
 
