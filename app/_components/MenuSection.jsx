@@ -34,16 +34,18 @@ const MenuSection = ({ restaurant }) => {
       email: user?.primaryEmailAddress?.emailAddress,
       name: item?.name,
       description: item?.description,
-      productImage: item?.productImage.url,
+      productImage: item?.productImage?.url,
       price: item?.price,
       restaurantSlug: restaurant.slug,
     };
     GlobalApi.AddToCart(data).then(
       (resp) => {
+        // console.log(resp);
         setUpdateCart(!updateCart);
         toast("Added to Cart");
       },
-      (err) => {
+      (error) => {
+        console.log(error);
         toast("Error while adding into the Cart");
       }
     );
