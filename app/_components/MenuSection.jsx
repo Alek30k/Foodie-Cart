@@ -36,6 +36,7 @@ const MenuSection = ({ restaurant }) => {
       description: item?.description,
       productImage: item?.productImage.url,
       price: item?.price,
+      restaurantSlug: restaurant.slug,
     };
     GlobalApi.AddToCart(data).then(
       (resp) => {
