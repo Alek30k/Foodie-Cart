@@ -54,7 +54,7 @@ const Header = () => {
               </div>
             </PopoverTrigger>
             <PopoverContent>
-              <Cart />
+              <Cart cart={cart} />
             </PopoverContent>
           </Popover>
 
