@@ -53,7 +53,7 @@ const Header = () => {
                 </label>
               </div>
             </PopoverTrigger>
-            <PopoverContent>
+            <PopoverContent className="w-full">
               <Cart cart={cart} />
             </PopoverContent>
           </Popover>

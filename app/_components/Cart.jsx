@@ -1,8 +1,19 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
 import Image from "next/image";
 
 const Cart = ({ cart }) => {
+  const CalculateCartAnount = () => {
+    let total = 0;
+
+    cart.forEach((item) => {
+      total = total + item.price;
+    });
+    return total;
+  };
+
   return (
     <div className="">
       <h2 className="text-lg font-bold">{cart[0]?.restaurant?.name}</h2>
@@ -10,7 +21,10 @@ const Cart = ({ cart }) => {
         <h2 className="font-bold">My Order</h2>
         {cart &&
           cart.map((item, index) => (
-            <div className="" key={index}>
+            <div
+              className="flex justify-between gap-8 items-center"
+              key={index}
+            >
               <div className="flex gap-2 items-center">
                 <Image
                   src={item.productImage}
@@ -21,9 +35,13 @@ const Cart = ({ cart }) => {
                 />
                 <h2 className="text-sm">{item?.productName}</h2>
               </div>
-              <h2 className=""></h2>
+              <h2 className="font-bold flex gap-2">
+                ${item.price}
+                <X className="h-4 w-4 text-red-500 cursor-pointer" />
+              </h2>
             </div>
           ))}
+        <Button>Checkout ${CalculateCartAnount()}</Button>
       </div>
     </div>
   );
