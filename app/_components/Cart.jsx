@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import Image from "next/image";
+import GlobalApi from "../_utils/GlobalApi";
 
 const Cart = ({ cart }) => {
   const CalculateCartAnount = () => {
@@ -12,6 +13,12 @@ const Cart = ({ cart }) => {
       total = total + item.price;
     });
     return total.toFixed(2);
+  };
+
+  const RemoveItemFromCart = (id) => {
+    GlobalApi.DisconnectRestroFromUserCartItem(id).then((resp) => {
+      console.log(resp);
+    });
   };
 
   return (
@@ -37,11 +44,14 @@ const Cart = ({ cart }) => {
               </div>
               <h2 className="font-bold flex gap-2">
                 ${item.price}
-                <X className="h-4 w-4 text-red-500 cursor-pointer" />
+                <X
+                  className="h-4 w-4 text-red-500 cursor-pointer"
+                  onClick={() => RemoveItemFromCart()}
+                />
               </h2>
             </div>
           ))}
-        <Button>Checkout ${CalculateCartAnount()}</Button>
+        <Button>Checkout ${CalculateCartAnount(item.id)}</Button>
       </div>
     </div>
   );

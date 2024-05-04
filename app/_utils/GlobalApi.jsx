@@ -157,7 +157,7 @@ const GetUserCart = async (userEmail) => {
   const result = await request(MASTER_URL, query);
   return result;
 };
-const DisconnectRestaurantFromUserCartItem = async (id) => {
+const DisconnectRestroFromUserCartItem = async (id) => {
   const query =
     gql`
     mutation DisconnectRestaurantFromCartItem {
@@ -182,5 +182,5 @@ export default {
   GetBusinessDetail,
   AddToCart,
   GetUserCart,
-  DisconnectRestaurantFromUserCartItem,
+  DisconnectRestroFromUserCartItem,
 };
