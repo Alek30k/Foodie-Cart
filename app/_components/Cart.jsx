@@ -19,7 +19,12 @@ const Cart = ({ cart }) => {
   const RemoveItemFromCart = (id) => {
     GlobalApi.DisconnectRestroFromUserCartItem(id).then((resp) => {
       console.log(resp);
-      toast("Item removed!");
+      if (resp) {
+        GlobalApi.DeleteItemFromCart(id).then((resp) => {
+          console.log(resp);
+          toast("Item Removed!");
+        });
+      }
     });
   };
 

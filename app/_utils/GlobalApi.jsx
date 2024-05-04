@@ -178,7 +178,7 @@ const DisconnectRestroFromUserCartItem = async (id) => {
   const result = await request(MASTER_URL, query);
   return result;
 };
-const DeleteCartFromItem = async (id) => {
+const DeleteItemFromCart = async (id) => {
   const query =
     gql`
     mutation DeleteCartItem {
@@ -201,5 +201,5 @@ export default {
   AddToCart,
   GetUserCart,
   DisconnectRestroFromUserCartItem,
-  DeleteCartFromItem,
+  DeleteItemFromCart,
 };
