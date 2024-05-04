@@ -122,8 +122,6 @@ const AddToCart = async (data) => {
         count
       }
     }
-    
-    
   `;
 
   const result = await request(MASTER_URL, query);
@@ -178,7 +176,6 @@ const DisconnectRestroFromUserCartItem = async (id) => {
   const result = await request(MASTER_URL, query);
   return result;
 };
-
 const DeleteItemFromCart = async (id) => {
   const query =
     gql`
@@ -188,7 +185,8 @@ const DeleteItemFromCart = async (id) => {
     `"}) {
         id
       }
-    }  
+    }
+    
   `;
 
   const result = await request(MASTER_URL, query);
