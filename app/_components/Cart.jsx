@@ -5,8 +5,12 @@ import { X } from "lucide-react";
 import Image from "next/image";
 import GlobalApi from "../_utils/GlobalApi";
 import { toast } from "sonner";
+import { useContext } from "react";
+import { CartUpdateContext } from "../_context/CartUpdateContext";
 
 const Cart = ({ cart }) => {
+  const { updateCart, setUpdateCart } = useContext(CartUpdateContext);
+
   const CalculateCartAnount = () => {
     let total = 0;
 
@@ -23,6 +27,7 @@ const Cart = ({ cart }) => {
         GlobalApi.DeleteItemFromCart(id).then((resp) => {
           console.log(resp);
           toast("Item Removed!");
+          setUpdateCart(!updateCart);
         });
       }
     });
