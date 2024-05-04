@@ -157,6 +157,24 @@ const GetUserCart = async (userEmail) => {
   const result = await request(MASTER_URL, query);
   return result;
 };
+const DisconnectRestaurantFromUserCartItem = async (id) => {
+  const query =
+    gql`
+    mutation DisconnectRestaurantFromCartItem {
+      updateUserCart(data: {restaurant: {disconnect: true}}, where: {id: "` +
+    id +
+    `"})
+      publishManyUserCarts(to: PUBLISHED) {
+        count
+      }
+    }
+    
+    
+  `;
+
+  const result = await request(MASTER_URL, query);
+  return result;
+};
 
 export default {
   GetCategory,
@@ -164,4 +182,5 @@ export default {
   GetBusinessDetail,
   AddToCart,
   GetUserCart,
+  DisconnectRestaurantFromUserCartItem,
 };

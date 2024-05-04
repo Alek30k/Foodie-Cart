@@ -11,7 +11,7 @@ const Cart = ({ cart }) => {
     cart.forEach((item) => {
       total = total + item.price;
     });
-    return total;
+    return total.toFixed(2);
   };
 
   return (
@@ -22,7 +22,7 @@ const Cart = ({ cart }) => {
         {cart &&
           cart.map((item, index) => (
             <div
-              className="flex justify-between gap-8 items-center"
+              className="flex justify-between gap-8 items-center cursor-pointer"
               key={index}
             >
               <div className="flex gap-2 items-center">
