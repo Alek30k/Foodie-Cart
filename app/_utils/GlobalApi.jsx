@@ -164,12 +164,30 @@ const DisconnectRestroFromUserCartItem = async (id) => {
       updateUserCart(data: {restaurant: {disconnect: true}}, where: {id: "` +
     id +
     `"})
+    {
+      id
+    }
       publishManyUserCarts(to: PUBLISHED) {
         count
       }
     }
     
     
+  `;
+
+  const result = await request(MASTER_URL, query);
+  return result;
+};
+const DeleteCartFromItem = async (id) => {
+  const query =
+    gql`
+    mutation DeleteCartItem {
+      deleteUserCart(where: {id: "` +
+    id +
+    `"}) {
+        id
+      }
+    }  
   `;
 
   const result = await request(MASTER_URL, query);
@@ -183,4 +201,5 @@ export default {
   AddToCart,
   GetUserCart,
   DisconnectRestroFromUserCartItem,
+  DeleteCartFromItem,
 };

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import Image from "next/image";
 import GlobalApi from "../_utils/GlobalApi";
+import { toast } from "sonner";
 
 const Cart = ({ cart }) => {
   const CalculateCartAnount = () => {
@@ -18,6 +19,7 @@ const Cart = ({ cart }) => {
   const RemoveItemFromCart = (id) => {
     GlobalApi.DisconnectRestroFromUserCartItem(id).then((resp) => {
       console.log(resp);
+      toast("Item removed!");
     });
   };
 
@@ -46,12 +48,12 @@ const Cart = ({ cart }) => {
                 ${item.price}
                 <X
                   className="h-4 w-4 text-red-500 cursor-pointer"
-                  onClick={() => RemoveItemFromCart()}
+                  onClick={() => RemoveItemFromCart(item?.id)}
                 />
               </h2>
             </div>
           ))}
-        <Button>Checkout ${CalculateCartAnount(item.id)}</Button>
+        <Button>Checkout ${CalculateCartAnount()}</Button>
       </div>
     </div>
   );
