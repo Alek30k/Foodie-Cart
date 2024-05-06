@@ -28,7 +28,6 @@ const Header = () => {
   const GetUserCart = () => {
     GlobalApi.GetUserCart(user?.primaryEmailAddress.emailAddress).then(
       (resp) => {
-        console.log(resp);
         setCart(resp?.userCarts);
       }
     );

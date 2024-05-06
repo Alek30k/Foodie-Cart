@@ -110,8 +110,8 @@ const AddToCart = async (data) => {
     data?.productImage +
     `", productName: "` +
     data?.name +
-    `", restaurant: {connect: {slug: "` +
-    data?.restaurantSlug +
+    `" restaurant: {connect: {slug: "` +
+    data.restaurantSlug +
     `"}}
 
   }

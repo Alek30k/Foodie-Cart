@@ -6,7 +6,7 @@ import { CartUpdateContext } from "./_context/CartUpdateContext";
 import { useState } from "react";
 
 const Provider = ({ children }) => {
-  const [updateCart, setUpdateCart] = useState(false);
+  const [updateCart, setUpdateCart] = useState(true);
 
   return (
     <CartUpdateContext.Provider value={{ updateCart, setUpdateCart }}>

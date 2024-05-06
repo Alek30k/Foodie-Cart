@@ -34,11 +34,8 @@ const Cart = ({ cart }) => {
     });
   };
 
-  console.log(cart);
-
   return (
     <div className="">
-      <h2 className="text-lg font-bold">{cart[0]?.restaurant?.name}</h2>
       <div className="mt-5 flex flex-col gap-3">
         <h2 className="font-bold">My Order</h2>
         {cart &&
@@ -56,6 +53,7 @@ const Cart = ({ cart }) => {
                   className="h-[40px] w-[40px] rounded-lg object-cover"
                 />
                 <h2 className="text-sm">{item?.productName}</h2>
+                <p className="text-sm text-primary">-{item.restaurant?.name}</p>
               </div>
               <h2 className="font-bold flex gap-2">
                 ${item.price}
