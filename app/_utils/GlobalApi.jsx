@@ -103,15 +103,15 @@ const AddToCart = async (data) => {
         data: {email: "` +
     data?.email +
     `", price: ` +
-    data.price +
+    data?.price +
     `, productDescription: "` +
-    data.description +
+    data?.description +
     `", productImage: "` +
-    data.productImage +
+    data?.productImage +
     `", productName: "` +
-    data.name +
+    data?.name +
     `", restaurant: {connect: {slug: "` +
-    data.restaurantSlug +
+    data?.restaurantSlug +
     `"}}
 
   }
@@ -155,6 +155,7 @@ const GetUserCart = async (userEmail) => {
   const result = await request(MASTER_URL, query);
   return result;
 };
+
 const DisconnectRestroFromUserCartItem = async (id) => {
   const query =
     gql`
@@ -176,20 +177,21 @@ const DisconnectRestroFromUserCartItem = async (id) => {
   const result = await request(MASTER_URL, query);
   return result;
 };
+
 const DeleteItemFromCart = async (id) => {
   const query =
     gql`
     mutation DeleteCartItem {
       deleteUserCart(where: {id: "` +
     id +
-    `"}) {
+    `"}),{
         id
       }
     }
-    
   `;
 
   const result = await request(MASTER_URL, query);
+  console.log(result);
   return result;
 };
 

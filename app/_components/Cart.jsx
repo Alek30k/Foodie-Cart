@@ -23,6 +23,7 @@ const Cart = ({ cart }) => {
   const RemoveItemFromCart = (id) => {
     GlobalApi.DisconnectRestroFromUserCartItem(id).then((resp) => {
       console.log(resp);
+
       if (resp) {
         GlobalApi.DeleteItemFromCart(id).then((resp) => {
           console.log(resp);
@@ -32,6 +33,8 @@ const Cart = ({ cart }) => {
       }
     });
   };
+
+  console.log(cart);
 
   return (
     <div className="">
