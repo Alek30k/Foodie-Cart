@@ -147,6 +147,7 @@ const GetUserCart = async (userEmail) => {
           }
           slug
         }
+        
       }
     }
     
@@ -160,17 +161,16 @@ const DisconnectRestroFromUserCartItem = async (id) => {
   const query =
     gql`
     mutation DisconnectRestaurantFromCartItem {
-      updateUserCart(data: {restaurant: {disconnect: true}}, where: {id: "` +
+      updateUserCart(data: {restaurant: {disconnect: true}}, 
+        where: {id: "` +
     id +
-    `"})
-    {
-      id
-    }
+    `"}) {
+        id
+      }
       publishManyUserCarts(to: PUBLISHED) {
         count
       }
     }
-    
     
   `;
 
@@ -189,10 +189,7 @@ const DeleteItemFromCart = async (id) => {
       }
     }
   `;
-
   const result = await request(MASTER_URL, query);
-  console.log(result);
-  return result;
 };
 
 export default {

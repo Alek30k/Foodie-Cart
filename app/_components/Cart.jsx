@@ -46,17 +46,19 @@ const Cart = ({ cart }) => {
             >
               <div className="flex gap-2 items-center">
                 <Image
-                  src={item.productImage}
-                  alt={item.productName}
+                  src={item?.productImage}
+                  alt={item?.productName}
                   width={40}
                   height={40}
                   className="h-[40px] w-[40px] rounded-lg object-cover"
                 />
                 <h2 className="text-sm">{item?.productName}</h2>
-                <p className="text-sm text-primary">-{item.restaurant?.name}</p>
+                <p className="text-sm text-primary">
+                  -{item?.restaurant?.name}
+                </p>
               </div>
               <h2 className="font-bold flex gap-2">
-                ${item.price}
+                ${item?.price}
                 <X
                   className="h-4 w-4 text-red-500 cursor-pointer"
                   onClick={() => RemoveItemFromCart(item?.id)}

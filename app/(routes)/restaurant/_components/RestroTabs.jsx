@@ -1,5 +1,6 @@
 import MenuSection from "@/app/_components/MenuSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ReviewSection from "./ReviewSection";
 
 const RestroTabs = ({ restaurant }) => {
   return (
@@ -13,7 +14,9 @@ const RestroTabs = ({ restaurant }) => {
         <MenuSection restaurant={restaurant} />
       </TabsContent>
       <TabsContent value="about">about</TabsContent>
-      <TabsContent value="reviews">reviews</TabsContent>
+      <TabsContent value="reviews">
+        <ReviewSection />
+      </TabsContent>
     </Tabs>
   );
 };
