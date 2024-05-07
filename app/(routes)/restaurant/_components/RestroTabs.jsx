@@ -15,7 +15,7 @@ const RestroTabs = ({ restaurant }) => {
       </TabsContent>
       <TabsContent value="about">about</TabsContent>
       <TabsContent value="reviews">
-        <ReviewSection />
+        <ReviewSection restaurant={restaurant} />
       </TabsContent>
     </Tabs>
   );
