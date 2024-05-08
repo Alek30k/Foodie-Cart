@@ -7,9 +7,12 @@ import { useState } from "react";
 
 const ReviewSection = ({ restaurant }) => {
   const [rating, setRating] = useState(0);
+  const [reviewText, setReviewText] = useState();
+
+  console.log(reviewText);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 mt-10">
+    <div className="grid grid-cols-1 md:grid-cols-3 mt-10 gap-10">
       <div className="flex flex-col gap-2 p-5 border rounded-lg shadow-lg">
         <h2 className="font-bold text-lg">Add your review</h2>
         <ReactRating
@@ -17,8 +20,8 @@ const ReviewSection = ({ restaurant }) => {
           value={rating}
           onChange={setRating}
         />
-        <Textarea />
-        <Button>Submit</Button>
+        <Textarea onChange={(e) => setReviewText(e.target.value)} />
+        <Button disabled={rating == 0 || !reviewText}>Submit</Button>
       </div>
       <div className="col-span-2 ">List of Review</div>
     </div>
