@@ -190,6 +190,27 @@ const DeleteItemFromCart = async (id) => {
     }
   `;
   const result = await request(MASTER_URL, query);
+  return result;
+};
+const AddNewReview = async (id) => {
+  const query = gql`
+    mutation AddNewReview {
+      createReview(
+        data: {
+          email: ""
+          profileImage: ""
+          reviewText: ""
+          star: 10
+          userName: ""
+          restaurant: { connect: { slug: "" } }
+        }
+      ) {
+        id
+      }
+    }
+  `;
+  const result = await request(MASTER_URL, query);
+  return result;
 };
 
 export default {
@@ -200,4 +221,5 @@ export default {
   GetUserCart,
   DisconnectRestroFromUserCartItem,
   DeleteItemFromCart,
+  AddNewReview,
 };
