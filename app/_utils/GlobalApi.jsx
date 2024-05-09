@@ -220,6 +220,9 @@ const AddNewReview = async (data) => {
       ) {
         id
       }
+      publishManyReviews(to: PUBLISHED) {
+        count
+      }
     }
   `;
   const result = await request(MASTER_URL, query);

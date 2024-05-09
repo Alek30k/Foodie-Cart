@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { useUser } from "@clerk/nextjs";
 import { Rating as ReactRating } from "@smastrom/react-rating";
 import { useState } from "react";
 
@@ -9,7 +10,18 @@ const ReviewSection = ({ restaurant }) => {
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState();
 
-  const handleSubmit = () => {};
+  const { user } = useUser();
+
+  const handleSubmit = () => {
+    const data = {
+      email: user?.primaryEmailAddress.emailAddress,
+      profileImage: user?.imageUrl,
+      userName: user?.fullName,
+      star: rating,
+      reviewText: reviewText,
+      RestroSlug: restaurant.slug,
+    };
+  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 mt-10 gap-10">
