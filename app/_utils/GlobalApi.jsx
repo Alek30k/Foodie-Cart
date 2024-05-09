@@ -193,16 +193,29 @@ const DeleteItemFromCart = async (id) => {
   return result;
 };
 const AddNewReview = async (data) => {
-  const query = gql`
+  const query =
+    gql`
     mutation AddNewReview {
       createReview(
         data: {
-          email: ""
-          profileImage: ""
-          reviewText: ""
-          star: 10
-          userName: ""
-          restaurant: { connect: { slug: "" } }
+          email: "` +
+    data.email +
+    `"
+          profileImage: "` +
+    data.profileImage +
+    `"
+          reviewText: "` +
+    data.reviewText +
+    `"
+          star: ` +
+    data.star +
+    `
+          userName: "` +
+    data.userName +
+    `"
+          restaurant: { connect: { slug: "` +
+    data.RestroSlug +
+    `" } }
         }
       ) {
         id
