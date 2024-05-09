@@ -192,6 +192,7 @@ const DeleteItemFromCart = async (id) => {
   const result = await request(MASTER_URL, query);
   return result;
 };
+
 const AddNewReview = async (data) => {
   const query =
     gql`
@@ -229,6 +230,27 @@ const AddNewReview = async (data) => {
   return result;
 };
 
+const getRestaurantReviews = async (slug) => {
+  const query =
+    gql`
+    query RestaurantReviews {
+      reviews(where: {restaurant: {slug: "` +
+    slug +
+    `"}}) {
+        email
+        id
+        profileImage
+        star
+        userName
+        publishedAt
+      }
+    }
+    
+  `;
+  const result = await request(MASTER_URL, query);
+  return result;
+};
+
 export default {
   GetCategory,
   GetBusiness,
@@ -238,4 +260,5 @@ export default {
   DisconnectRestroFromUserCartItem,
   DeleteItemFromCart,
   AddNewReview,
+  getRestaurantReviews,
 };
