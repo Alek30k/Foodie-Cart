@@ -1,10 +1,12 @@
 "use client";
 
+import GlobalApi from "@/app/_utils/GlobalApi";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useUser } from "@clerk/nextjs";
 import { Rating as ReactRating } from "@smastrom/react-rating";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const ReviewSection = ({ restaurant }) => {
   const [rating, setRating] = useState(0);
@@ -21,6 +23,11 @@ const ReviewSection = ({ restaurant }) => {
       reviewText: reviewText,
       RestroSlug: restaurant.slug,
     };
+
+    GlobalApi.AddNewReview(data).then((resp) => {
+      console.log(resp);
+      toast("Review Added!!");
+    });
   };
 
   return (
