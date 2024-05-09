@@ -192,7 +192,7 @@ const DeleteItemFromCart = async (id) => {
   const result = await request(MASTER_URL, query);
   return result;
 };
-const AddNewReview = async (id) => {
+const AddNewReview = async (data) => {
   const query = gql`
     mutation AddNewReview {
       createReview(
