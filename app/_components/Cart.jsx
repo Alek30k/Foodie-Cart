@@ -67,8 +67,8 @@ const Cart = ({ cart }) => {
               </h2>
             </div>
           ))}
-        <Link href="/checkout">
-          <Button>Checkout ${CalculateCartAnount()}</Button>
+        <Link href={"/checkout?restaurant=" + cart[0]?.restaurant?.name}>
+          <Button className="w-full">Checkout ${CalculateCartAnount()}</Button>
         </Link>
       </div>
     </div>
