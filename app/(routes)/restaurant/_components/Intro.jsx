@@ -1,7 +1,23 @@
+"use client";
+
 import { MapPin } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
 const Intro = ({ restaurant }) => {
+  const [totalRating, setTotalRating] = useState();
+
+  const CalculateRating = () => {
+    let total = 0;
+    let count = 0;
+    business?.review.forEach((item) => {
+      total = total + item.star;
+      count++;
+    });
+    const result = total / count;
+    return result ? result.toFixed(1) : 5;
+  };
+
   return (
     <div className="">
       {restaurant?.banner?.url ? (
