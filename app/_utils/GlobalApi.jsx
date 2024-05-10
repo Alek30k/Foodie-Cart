@@ -258,6 +258,28 @@ const getRestaurantReviews = async (slug) => {
   return result;
 };
 
+const CreateNewOrder = async () => {
+  const query = gql`
+    mutation CreateNewOrder {
+      createOrder(
+        data: {
+          email: ""
+          orderAmount: 1.5
+          restaurantName: ""
+          userName: ""
+          phone: ""
+          address: ""
+          zipCode: ""
+        }
+      ) {
+        id
+      }
+    }
+  `;
+  const result = await request(MASTER_URL, query);
+  return result;
+};
+
 export default {
   GetCategory,
   GetBusiness,
@@ -268,4 +290,5 @@ export default {
   DeleteItemFromCart,
   AddNewReview,
   getRestaurantReviews,
+  CreateNewOrder,
 };
