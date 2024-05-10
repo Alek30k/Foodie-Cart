@@ -89,6 +89,9 @@ const GetBusinessDetail = async (businessSlug) => {
             }
           }
         }
+        review {
+          star
+        }
       }
     }
     
