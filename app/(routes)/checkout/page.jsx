@@ -1,10 +1,11 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import GlobalApi from "@/app/_utils/GlobalApi";
 import { useUser } from "@clerk/nextjs";
+import { CartUpdateContext } from "@/app/_context/CartUpdateContext";
 
 const Checkout = () => {
   const [username, setUsername] = useState();
@@ -12,7 +13,11 @@ const Checkout = () => {
   const [phone, setPhone] = useState();
   const [zip, setZip] = useState();
   const [address, setAddress] = useState();
-  const [cart, setCart] = useState();
+  const [cart, setCart] = useState([]);
+  const [subtotal, setSubTotal] = useState(0);
+  const [deliveryAmount, setDeliveryAmount] = useState(5);
+
+  const { updateCart, setUpdateCart } = useContext(CartUpdateContext);
 
   const params = useSearchParams();
   const { user } = useUser();
@@ -20,20 +25,29 @@ const Checkout = () => {
   useEffect(() => {
     console.log(params.get("restaurant"));
     user && GetUserCart();
-  }, [user]);
+  }, [user || updateCart]);
 
   const GetUserCart = () => {
     GlobalApi.GetUserCart(user?.primaryEmailAddress.emailAddress).then(
       (resp) => {
         setCart(resp?.userCarts);
+        calculateTotalAmount(resp?.userCarts);
       }
     );
+  };
+
+  const calculateTotalAmount = (cart_) => {
+    let total = 0;
+    cart_.forEach((item) => {
+      total = total + item.price;
+    });
+    setSubTotal(total);
   };
 
   return (
     <div className="">
       <h2 className="font-bold text-2xl my-5">Checkaut</h2>
-      <div className="p-5 px-5 md:px-10 grid grid-cols-1 md:grid-cols-3 py-8">
+      <div className="p-5 px-5 md:px-10 grid grid-cols-1 md:grid-cols-3 py-8 ">
         <div className="md:col-span-2 mx-20">
           <h2 className="font-bold text-3xl">Billing Details</h2>
           <div className="grid grid-cols-2 gap-10 mt-3">
@@ -59,16 +73,24 @@ const Checkout = () => {
               onChange={(e) => setAddress(e.target.value)}
             />
           </div>
-          <div className="mx-10 border">
-            <h2 className="p-3 bg-gray-200 font-bold text-center">Total</h2>
-            <div className="p-4 flex flex-col gap-4">
-              <h2 className="font-bold flex justify-between">Subtotal</h2>
-              <hr />
-              <h2 className="flex justify-between">Delivery</h2>
-              <h2 className="flex justify-between">Tax (9%)</h2>
-              <hr />
-              <h2 className="font-bold flex justify-between">Total:</h2>
-            </div>
+        </div>
+        <div className="mx-10 border">
+          <h2 className="p-3 bg-gray-200 font-bold text-center">
+            Total Cart ({cart.length})
+          </h2>
+          <div className="p-4 flex flex-col gap-4">
+            <h2 className="font-bold flex justify-between">
+              Subtotal : <span>{subtotal}</span>
+            </h2>
+            <hr />
+            <h2 className="flex justify-between">
+              Delivery <span>{deliveryAmount}</span>
+            </h2>
+            <h2 className="flex justify-between">
+              Tax (9%) <span>-</span>
+            </h2>
+            <hr />
+            <h2 className="font-bold flex justify-between">Total:</h2>
           </div>
         </div>
       </div>
