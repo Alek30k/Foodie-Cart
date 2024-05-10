@@ -16,6 +16,7 @@ const Checkout = () => {
   const [cart, setCart] = useState([]);
   const [subtotal, setSubTotal] = useState(0);
   const [deliveryAmount, setDeliveryAmount] = useState(5);
+  const [taxAmount, setTaxAmount] = useState(0);
 
   const { updateCart, setUpdateCart } = useContext(CartUpdateContext);
 
@@ -41,7 +42,9 @@ const Checkout = () => {
     cart_.forEach((item) => {
       total = total + item.price;
     });
-    setSubTotal(total);
+    setSubTotal(total.toFixed(2));
+
+    setTaxAmount(total * 0.9);
   };
 
   return (
@@ -80,14 +83,14 @@ const Checkout = () => {
           </h2>
           <div className="p-4 flex flex-col gap-4">
             <h2 className="font-bold flex justify-between">
-              Subtotal : <span>{subtotal}</span>
+              Subtotal : <span>${subtotal}</span>
             </h2>
             <hr />
             <h2 className="flex justify-between">
-              Delivery <span>{deliveryAmount}</span>
+              Delivery <span>${deliveryAmount}</span>
             </h2>
             <h2 className="flex justify-between">
-              Tax (9%) <span>-</span>
+              Tax (9%) <span>${taxAmount.toFixed(2)}</span>
             </h2>
             <hr />
             <h2 className="font-bold flex justify-between">Total:</h2>
