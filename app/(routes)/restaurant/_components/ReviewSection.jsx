@@ -34,6 +34,7 @@ const ReviewSection = ({ restaurant }) => {
       // console.log(resp);
 
       toast("Review Added!!");
+      resp && getReviewList();
     });
   };
 
@@ -46,7 +47,7 @@ const ReviewSection = ({ restaurant }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 mt-10 gap-10">
-      <div className="flex flex-col gap-2 p-5 border rounded-lg shadow-lg">
+      <div className="flex flex-col gap-2 p-5 border rounded-lg shadow-lg h-fit ">
         <h2 className="font-bold text-lg">Add your review</h2>
         <ReactRating
           style={{ maxWidth: 100 }}

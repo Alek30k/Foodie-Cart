@@ -12,8 +12,8 @@ const ReviewList = ({ reviewList }) => {
               key={index}
             >
               <Image
-                src={review.profileImage}
-                alt={review.profileImage}
+                src={review?.profileImage}
+                alt={review?.profileImage}
                 width={50}
                 height={50}
                 className="rounded-full"

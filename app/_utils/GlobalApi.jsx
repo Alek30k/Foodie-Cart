@@ -236,7 +236,7 @@ const getRestaurantReviews = async (slug) => {
     query RestaurantReviews {
       reviews(where: {restaurant: {slug: "` +
     slug +
-    `"}}) {
+    `"}}, orderBy: publishedAt_DESC) {
         email
         id
         profileImage
