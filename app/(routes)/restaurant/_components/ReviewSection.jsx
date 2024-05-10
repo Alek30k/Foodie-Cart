@@ -1,5 +1,6 @@
 "use client";
 
+import ReviewList from "@/app/_components/ReviewList";
 import GlobalApi from "@/app/_utils/GlobalApi";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -60,7 +61,9 @@ const ReviewSection = ({ restaurant }) => {
           Submit
         </Button>
       </div>
-      <div className="col-span-2 ">List of Review</div>
+      <div className="col-span-2 ">
+        <ReviewList reviewList={reviewList} />
+      </div>
     </div>
   );
 };
