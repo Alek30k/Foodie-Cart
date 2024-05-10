@@ -7,6 +7,7 @@ import GlobalApi from "../_utils/GlobalApi";
 import { toast } from "sonner";
 import { useContext } from "react";
 import { CartUpdateContext } from "../_context/CartUpdateContext";
+import Link from "next/link";
 
 const Cart = ({ cart }) => {
   const { updateCart, setUpdateCart } = useContext(CartUpdateContext);
@@ -66,7 +67,9 @@ const Cart = ({ cart }) => {
               </h2>
             </div>
           ))}
-        <Button>Checkout ${CalculateCartAnount()}</Button>
+        <Link href="/checkout">
+          <Button>Checkout ${CalculateCartAnount()}</Button>
+        </Link>
       </div>
     </div>
   );
