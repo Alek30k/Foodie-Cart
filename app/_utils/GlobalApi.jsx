@@ -243,6 +243,7 @@ const getRestaurantReviews = async (slug) => {
         star
         userName
         publishedAt
+        reviewText
       }
     }
     

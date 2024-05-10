@@ -31,7 +31,7 @@ const ReviewSection = ({ restaurant }) => {
     };
 
     GlobalApi.AddNewReview(data).then((resp) => {
-      console.log(resp);
+      // console.log(resp);
 
       toast("Review Added!!");
     });
@@ -39,7 +39,7 @@ const ReviewSection = ({ restaurant }) => {
 
   const getReviewList = () => {
     GlobalApi.getRestaurantReviews(restaurant.slug).then((resp) => {
-      console.log(resp);
+      // console.log(resp);
       setReviewList(resp?.reviews);
     });
   };
