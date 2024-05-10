@@ -5,14 +5,19 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useUser } from "@clerk/nextjs";
 import { Rating as ReactRating } from "@smastrom/react-rating";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 const ReviewSection = ({ restaurant }) => {
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState();
+  const [reviewList, setReviewList] = useState();
 
   const { user } = useUser();
+
+  useEffect(() => {
+    restaurant && getReviewList();
+  }, [restaurant]);
 
   const handleSubmit = () => {
     const data = {
@@ -26,7 +31,15 @@ const ReviewSection = ({ restaurant }) => {
 
     GlobalApi.AddNewReview(data).then((resp) => {
       console.log(resp);
+
       toast("Review Added!!");
+    });
+  };
+
+  const getReviewList = () => {
+    GlobalApi.getRestaurantReviews(restaurant.slug).then((resp) => {
+      console.log(resp);
+      setReviewList(resp?.reviews);
     });
   };
 
