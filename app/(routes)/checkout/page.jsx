@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import GlobalApi from "@/app/_utils/GlobalApi";
 import { useUser } from "@clerk/nextjs";
 import { CartUpdateContext } from "@/app/_context/CartUpdateContext";
+import { Button } from "@/components/ui/button";
 
 const Checkout = () => {
   const [username, setUsername] = useState();
@@ -17,6 +18,7 @@ const Checkout = () => {
   const [subtotal, setSubTotal] = useState(0);
   const [deliveryAmount, setDeliveryAmount] = useState(5);
   const [taxAmount, setTaxAmount] = useState(0);
+  const [total, setTotal] = useState(0);
 
   const { updateCart, setUpdateCart } = useContext(CartUpdateContext);
 
@@ -44,8 +46,11 @@ const Checkout = () => {
     });
     setSubTotal(total.toFixed(2));
 
-    setTaxAmount(total * 0.9);
+    setTaxAmount(total * 0.09);
+    setTotal(total + total * 0.09 + deliveryAmount);
   };
+
+  const addToOrder = () => {};
 
   return (
     <div className="">
@@ -93,7 +98,11 @@ const Checkout = () => {
               Tax (9%) <span>${taxAmount.toFixed(2)}</span>
             </h2>
             <hr />
-            <h2 className="font-bold flex justify-between">Total:</h2>
+            <h2 className="font-bold flex justify-between">
+              Total: <span>${total.toFixed(2)}</span>
+            </h2>
+            {/* <Button onClick={()=>onApprove({paymentId:123})}>Payment <ArrowBigRight/></Button> */}
+            <Button onClick={() => addToOrder()}>Make Payment</Button>
           </div>
         </div>
       </div>
