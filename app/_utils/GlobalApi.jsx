@@ -258,18 +258,33 @@ const getRestaurantReviews = async (slug) => {
   return result;
 };
 
-const CreateNewOrder = async () => {
-  const query = gql`
+const CreateNewOrder = async (data) => {
+  const query =
+    gql`
     mutation CreateNewOrder {
       createOrder(
         data: {
-          email: ""
-          orderAmount: 1.5
-          restaurantName: ""
-          userName: ""
-          phone: ""
-          address: ""
-          zipCode: ""
+          email: "` +
+    data.email +
+    `"
+          orderAmount: ` +
+    data.orderAmount +
+    `
+          restaurantName: "` +
+    data.restaurantName +
+    `"
+          userName: "` +
+    data.userName +
+    `"
+          phone: "` +
+    data.phone +
+    `"
+          address: "` +
+    data.address +
+    `"
+          zipCode: "` +
+    data.zipCode +
+    `"
         }
       ) {
         id
