@@ -7,6 +7,8 @@ import GlobalApi from "@/app/_utils/GlobalApi";
 import { useUser } from "@clerk/nextjs";
 import { CartUpdateContext } from "@/app/_context/CartUpdateContext";
 import { Button } from "@/components/ui/button";
+import { Loader } from "lucide-react";
+import { toast } from "sonner";
 
 const Checkout = () => {
   const [username, setUsername] = useState();
@@ -19,6 +21,7 @@ const Checkout = () => {
   const [deliveryAmount, setDeliveryAmount] = useState(5);
   const [taxAmount, setTaxAmount] = useState(0);
   const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const { updateCart, setUpdateCart } = useContext(CartUpdateContext);
 
@@ -51,6 +54,7 @@ const Checkout = () => {
   };
 
   const addToOrder = () => {
+    setLoading(true);
     const data = {
       email: user.primaryEmailAddress.emailAddress,
       orderAmount: total,
@@ -64,14 +68,23 @@ const Checkout = () => {
       const resultId = resp?.createOrder?.id;
 
       if (resultId) {
-        cart.forEach((item) => {
-          GlobalApi.UpdateOrderToAddOrderItems(
-            item.productName,
-            item.price
-          ).then((result) => {
-            console.log(result);
-          });
-        });
+        cart.forEach(
+          (item) => {
+            GlobalApi.UpdateOrderToAddOrderItems(
+              item.productName,
+              item.price,
+              resultId,
+              user?.primaryEmailAddress.emailAddress
+            ).then((result) => {
+              console.log(result);
+              setLoading(false);
+              toast("Order Created Successfully!");
+            });
+          },
+          (err) => {
+            setLoading(false);
+          }
+        );
       }
     });
   };
@@ -126,7 +139,9 @@ const Checkout = () => {
               Total: <span>${total.toFixed(2)}</span>
             </h2>
             {/* <Button onClick={()=>onApprove({paymentId:123})}>Payment <ArrowBigRight/></Button> */}
-            <Button onClick={() => addToOrder()}>Make Payment</Button>
+            <Button onClick={() => addToOrder()}>
+              {loading ? <Loader className="animate-spin" /> : "Make Payment"}
+            </Button>
           </div>
         </div>
       </div>
