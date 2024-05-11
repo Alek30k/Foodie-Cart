@@ -295,16 +295,23 @@ const CreateNewOrder = async (data) => {
   return result;
 };
 
-const UpdateOrderToAddOrderItems = async (data) => {
-  const query = gql`
+const UpdateOrderToAddOrderItems = async (name, price, id) => {
+  const query =
+    gql`
     mutation UpdateOrderWithDetail {
       updateOrder(
         data: {
           orderDetail: {
-            create: { OrderItem: { data: { name: "", price: 1.5 } } }
+            create: { OrderItem: { data: { name: "` +
+    name +
+    `", price: ` +
+    price +
+    ` } } }
           }
         }
-        where: { id: "" }
+        where: { id: "` +
+    id +
+    `" }
       ) {
         id
       }

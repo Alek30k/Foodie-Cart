@@ -61,7 +61,18 @@ const Checkout = () => {
       zipCode: zip,
     };
     GlobalApi.CreateNewOrder(data).then((resp) => {
-      console.log(resp?.createOrder?.id);
+      const resultId = resp?.createOrder?.id;
+
+      if (resultId) {
+        cart.forEach((item) => {
+          GlobalApi.UpdateOrderToAddOrderItems(
+            item.productName,
+            item.price
+          ).then((result) => {
+            console.log(result);
+          });
+        });
+      }
     });
   };
 
