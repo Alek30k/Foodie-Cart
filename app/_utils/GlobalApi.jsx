@@ -295,6 +295,25 @@ const CreateNewOrder = async (data) => {
   return result;
 };
 
+const UpdateOrderToAddOrderItems = async (data) => {
+  const query = gql`
+    mutation UpdateOrderWithDetail {
+      updateOrder(
+        data: {
+          orderDetail: {
+            create: { OrderItem: { data: { name: "", price: 1.5 } } }
+          }
+        }
+        where: { id: "" }
+      ) {
+        id
+      }
+    }
+  `;
+  const result = await request(MASTER_URL, query);
+  return result;
+};
+
 export default {
   GetCategory,
   GetBusiness,
@@ -306,4 +325,5 @@ export default {
   AddNewReview,
   getRestaurantReviews,
   CreateNewOrder,
+  UpdateOrderToAddOrderItems,
 };

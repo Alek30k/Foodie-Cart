@@ -61,7 +61,7 @@ const Checkout = () => {
       zipCode: zip,
     };
     GlobalApi.CreateNewOrder(data).then((resp) => {
-      console.log(resp.createOrder.id);
+      console.log(resp?.createOrder?.id);
     });
   };
 
