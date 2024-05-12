@@ -318,14 +318,11 @@ const UpdateOrderToAddOrderItems = async (name, price, id, email) => {
       publishManyOrders(to: PUBLISHED) {
         count
       }
-      mutation DeleteUserCart {
         deleteManyUserCarts(where: {email: "` +
     email +
     `"}) {
           count
         }
-      }
-      
     }
   `;
   const result = await request(MASTER_URL, query);

@@ -29,7 +29,7 @@ const Checkout = () => {
   const { user } = useUser();
 
   useEffect(() => {
-    console.log(params.get("restaurant"));
+    // console.log(params.get("restaurant"));
     user && GetUserCart();
   }, [user || updateCart]);
 
@@ -55,6 +55,7 @@ const Checkout = () => {
 
   const addToOrder = () => {
     setLoading(true);
+
     const data = {
       email: user.primaryEmailAddress.emailAddress,
       orderAmount: total,
@@ -64,8 +65,10 @@ const Checkout = () => {
       address: address,
       zipCode: zip,
     };
+
     GlobalApi.CreateNewOrder(data).then((resp) => {
       const resultId = resp?.createOrder?.id;
+      console.log(user?.primaryEmailAddress.emailAddress);
 
       if (resultId) {
         cart.forEach(
@@ -75,13 +78,21 @@ const Checkout = () => {
               item.price,
               resultId,
               user?.primaryEmailAddress.emailAddress
-            ).then((result) => {
-              console.log(result);
-              setLoading(false);
-              toast("Order Created Successfully!");
-            });
+            ).then(
+              (result) => {
+                console.log(result);
+                setLoading(false);
+                toast("Order Created Successfully!");
+                setUpdateCart(!updateCart);
+              },
+              (err) => {
+                console.log("apa", err);
+                setLoading(false);
+              }
+            );
           },
           (err) => {
+            console.log("epaa", err);
             setLoading(false);
           }
         );
