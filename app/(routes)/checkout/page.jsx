@@ -9,6 +9,7 @@ import { CartUpdateContext } from "@/app/_context/CartUpdateContext";
 import { Button } from "@/components/ui/button";
 import { Loader } from "lucide-react";
 import { toast } from "sonner";
+import { PayPalButtons } from "@paypal/react-paypal-js";
 
 const Checkout = () => {
   const [username, setUsername] = useState();
@@ -150,9 +151,26 @@ const Checkout = () => {
               Total: <span>${total.toFixed(2)}</span>
             </h2>
             {/* <Button onClick={()=>onApprove({paymentId:123})}>Payment <ArrowBigRight/></Button> */}
-            <Button onClick={() => addToOrder()}>
+            {/* <Button onClick={() => addToOrder()}>
               {loading ? <Loader className="animate-spin" /> : "Make Payment"}
-            </Button>
+            </Button> */}
+            <PayPalButtons
+              disabled={!(username && email && address && zip) || loading}
+              style={{ layout: "horizontal" }}
+              onApprove={addToOrder}
+              createOrder={(data, action) => {
+                return action.order.create({
+                  purchase_units: [
+                    {
+                      amount: {
+                        value: total,
+                        currency_code: "USD",
+                      },
+                    },
+                  ],
+                });
+              }}
+            />
           </div>
         </div>
       </div>
