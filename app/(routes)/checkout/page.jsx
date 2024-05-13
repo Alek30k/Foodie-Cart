@@ -24,6 +24,8 @@ const Checkout = () => {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
 
+  console.log(total);
+
   const { updateCart, setUpdateCart } = useContext(CartUpdateContext);
 
   const params = useSearchParams();
@@ -154,23 +156,25 @@ const Checkout = () => {
             {/* <Button onClick={() => addToOrder()}>
               {loading ? <Loader className="animate-spin" /> : "Make Payment"}
             </Button> */}
-            <PayPalButtons
-              disabled={!(username && email && address && zip) || loading}
-              style={{ layout: "horizontal" }}
-              onApprove={addToOrder}
-              createOrder={(data, action) => {
-                return action.order.create({
-                  purchase_units: [
-                    {
-                      amount: {
-                        value: total,
-                        currency_code: "USD",
+            {total > 5 && (
+              <PayPalButtons
+                disabled={!(username && email && address && zip) || loading}
+                style={{ layout: "horizontal" }}
+                onApprove={addToOrder}
+                createOrder={(data, action) => {
+                  return action.order.create({
+                    purchase_units: [
+                      {
+                        amount: {
+                          value: total.toFixed(2),
+                          currency_code: "USD",
+                        },
                       },
-                    },
-                  ],
-                });
-              }}
-            />
+                    ],
+                  });
+                }}
+              />
+            )}
           </div>
         </div>
       </div>
