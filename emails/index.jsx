@@ -24,7 +24,7 @@ const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "";
 
-export const AppleReceiptEmail = () => (
+export const Email = () => (
   <Html>
     <Head />
     <Preview>Apple Receipt</Preview>
@@ -129,7 +129,7 @@ export const AppleReceiptEmail = () => (
   </Html>
 );
 
-export default AppleReceiptEmail;
+export default Email;
 
 const main = {
   fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
