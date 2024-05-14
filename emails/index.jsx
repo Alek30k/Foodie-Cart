@@ -77,7 +77,13 @@ export const AppleReceiptEmail = () => (
             </Column>
           </Row>
         </Section>
-        <Hr style={productPriceLineBottom} />
+        <Hr />
+
+        <Section>
+          <Text align="center" style={InfoStyle}>
+            Delivery Information
+          </Text>
+        </Section>
 
         <Text style={footerTextCenter}>
           {" "}
@@ -130,11 +136,6 @@ const main = {
   backgroundColor: "#ffffff",
 };
 
-const resetText = {
-  margin: "0",
-  padding: "0",
-  lineHeight: 1.4,
-};
 const table = {
   borderCollapse: "collapse",
   width: "100%",
@@ -170,80 +171,9 @@ const cupomText = {
 const supStyle = {
   fontWeight: "300",
 };
-
-const informationTable = {
-  borderCollapse: "collapse",
-  borderSpacing: "0px",
-  color: "rgb(51,51,51)",
-  backgroundColor: "rgb(250,250,250)",
-  borderRadius: "3px",
-  fontSize: "12px",
-};
-
-const informationTableRow = {
-  height: "46px",
-};
-
-const informationTableColumn = {
-  paddingLeft: "20px",
-  borderStyle: "solid",
-  borderColor: "white",
-  borderWidth: "0px 1px 1px 0px",
-  height: "44px",
-};
-
-const informationTableLabel = {
-  ...resetText,
-  color: "rgb(102,102,102)",
-  fontSize: "10px",
-};
-
-const informationTableValue = {
-  fontSize: "12px",
-  margin: "0",
-  padding: "0",
-  lineHeight: 1.4,
-};
-
-const productTitleTable = {
-  ...informationTable,
-  margin: "30px 0 15px 0",
-  height: "24px",
-};
-
-const productsTitle = {
-  background: "#fafafa",
-  paddingLeft: "10px",
-  fontSize: "14px",
-  fontWeight: "500",
-  margin: "0",
-};
-
-const productIcon = {
-  margin: "0 0 0 20px",
-  borderRadius: "14px",
-  border: "1px solid rgba(128,128,128,0.2)",
-};
-
-const productTitle = { fontSize: "12px", fontWeight: "600", ...resetText };
-
-const productDescription = {
-  fontSize: "12px",
-  color: "rgb(102,102,102)",
-  ...resetText,
-};
-
-const productLink = {
-  fontSize: "12px",
-  color: "rgb(0,112,201)",
-  textDecoration: "none",
-};
-
-const divisor = {
-  marginLeft: "4px",
-  marginRight: "4px",
-  color: "rgb(51,51,51)",
-  fontWeight: 200,
+const InfoStyle = {
+  fontWeight: "600",
+  fontSize: "18px",
 };
 
 const productPriceTotal = {
@@ -255,25 +185,12 @@ const productPriceTotal = {
   textAlign: "right",
 };
 
-const productPrice = {
-  fontSize: "12px",
-  fontWeight: "600",
-  margin: "0",
-};
-
 const productPriceLarge = {
   margin: "0px 20px 0px 0px",
   fontSize: "16px",
   fontWeight: "600",
   whiteSpace: "nowrap",
   textAlign: "right",
-};
-
-const productPriceWrapper = {
-  display: "table-cell",
-  padding: "0px 20px 0px 0px",
-  width: "100px",
-  verticalAlign: "top",
 };
 
 const productPriceLine = { margin: "30px 0 0 0" };
@@ -286,37 +203,6 @@ const productPriceVerticalLine = {
 
 const productPriceLargeWrapper = { display: "table-cell", width: "90px" };
 
-const productPriceLineBottom = { margin: "0 0 75px 0" };
-
-const block = { display: "block" };
-
-const ctaTitle = {
-  display: "block",
-  margin: "15px 0 0 0",
-};
-
-const ctaText = { fontSize: "24px", fontWeight: "500" };
-
-const walletWrapper = { display: "table-cell", margin: "10px 0 0 0" };
-
-const walletLink = { color: "rgb(0,126,255)", textDecoration: "none" };
-
-const walletImage = {
-  display: "inherit",
-  paddingRight: "8px",
-  verticalAlign: "middle",
-};
-
-const walletBottomLine = { margin: "65px 0 20px 0" };
-
-const footerText = {
-  fontSize: "12px",
-  color: "rgb(102,102,102)",
-  margin: "0",
-  lineHeight: "auto",
-  marginBottom: "16px",
-};
-
 const footerTextCenter = {
   fontSize: "12px",
   color: "rgb(102,102,102)",
@@ -324,8 +210,6 @@ const footerTextCenter = {
   lineHeight: "auto",
   textAlign: "center",
 };
-
-const footerLink = { color: "rgb(0,115,255)" };
 
 const footerIcon = { display: "block", margin: "40px 0 0 0" };
 
@@ -341,10 +225,4 @@ const footerCopyright = {
   textAlign: "center",
   fontSize: "12px",
   color: "rgb(102,102,102)",
-};
-
-const walletLinkText = {
-  fontSize: "14px",
-  fontWeight: "400",
-  textDecoration: "none",
 };
