@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import GlobalApi from "@/app/_utils/GlobalApi";
@@ -23,6 +23,8 @@ const Checkout = () => {
   const [taxAmount, setTaxAmount] = useState(0);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
 
   console.log(total);
 
@@ -87,6 +89,7 @@ const Checkout = () => {
                 setLoading(false);
                 toast("Order Created Successfully!");
                 setUpdateCart(!updateCart);
+                router.replace("/confirmation");
               },
               (err) => {
                 console.log("apa", err);
