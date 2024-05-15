@@ -26,8 +26,6 @@ const Checkout = () => {
 
   const router = useRouter();
 
-  console.log(total);
-
   const { updateCart, setUpdateCart } = useContext(CartUpdateContext);
 
   const params = useSearchParams();
@@ -106,6 +104,26 @@ const Checkout = () => {
     });
   };
 
+  const SendEmail = async () => {
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: user?.primaryEmailAddress.emailAddress }),
+      });
+
+      if (!response.ok) {
+        toast("Error while sending email");
+      } else {
+        toast("Confirmation Email Sent");
+      }
+    } catch (err) {
+      toast("Error while sending email");
+    }
+  };
+
   return (
     <div className="">
       <h2 className="font-bold text-2xl my-5">Checkaut</h2>
@@ -156,9 +174,9 @@ const Checkout = () => {
               Total: <span>${total.toFixed(2)}</span>
             </h2>
             {/* <Button onClick={()=>onApprove({paymentId:123})}>Payment <ArrowBigRight/></Button> */}
-            {/* <Button onClick={() => addToOrder()}>
+            <Button onClick={() => SendEmail()}>
               {loading ? <Loader className="animate-spin" /> : "Make Payment"}
-            </Button> */}
+            </Button>
             {total > 5 && (
               <PayPalButtons
                 disabled={!(username && email && address && zip) || loading}
