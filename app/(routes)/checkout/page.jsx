@@ -60,18 +60,18 @@ const Checkout = () => {
     setLoading(true);
 
     const data = {
-      email: user.primaryEmailAddress.emailAddress,
+      email: user?.primaryEmailAddress.emailAddress,
       orderAmount: total,
       restaurantName: params.get("restaurant"),
-      userName: user.fullName,
+      userName: user?.fullName,
       phone: phone,
       address: address,
       zipCode: zip,
     };
 
     GlobalApi.CreateNewOrder(data).then((resp) => {
+      // console.log(resp?.createOrder?.id);
       const resultId = resp?.createOrder?.id;
-      console.log(user?.primaryEmailAddress.emailAddress);
 
       if (resultId) {
         cart.forEach(
@@ -79,24 +79,23 @@ const Checkout = () => {
             GlobalApi.UpdateOrderToAddOrderItems(
               item.productName,
               item.price,
-              resultId,
-              user?.primaryEmailAddress.emailAddress
+              resultId
+              // user?.primaryEmailAddress.emailAddress
             ).then(
               (result) => {
-                console.log(result);
                 setLoading(false);
                 toast("Order Created Successfully!");
                 setUpdateCart(!updateCart);
                 router.replace("/confirmation");
               },
               (err) => {
-                console.log("apa", err);
+                console.log(err);
                 setLoading(false);
               }
             );
           },
           (err) => {
-            console.log("epaa", err);
+            console.log(err);
             setLoading(false);
           }
         );
@@ -174,7 +173,7 @@ const Checkout = () => {
               Total: <span>${total.toFixed(2)}</span>
             </h2>
             {/* <Button onClick={()=>onApprove({paymentId:123})}>Payment <ArrowBigRight/></Button> */}
-            <Button onClick={() => SendEmail()}>
+            <Button onClick={() => addToOrder()}>
               {loading ? <Loader className="animate-spin" /> : "Make Payment"}
             </Button>
             {total > 5 && (

@@ -263,66 +263,56 @@ const CreateNewOrder = async (data) => {
     gql`
     mutation CreateNewOrder {
       createOrder(
-        data: {
-          email: "` +
+        data: {email: "` +
     data.email +
-    `"
+    `", 
           orderAmount: ` +
     data.orderAmount +
-    `
+    `, 
           restaurantName: "` +
     data.restaurantName +
-    `"
+    `",
           userName: "` +
     data.userName +
-    `"
+    `", 
           phone: "` +
     data.phone +
-    `"
-          address: "` +
-    data.address +
-    `"
+    `", 
           zipCode: "` +
     data.zipCode +
-    `"
-        }
+    `", 
+          address: "` +
+    data.address +
+    `"}
       ) {
         id
       }
     }
   `;
+
   const result = await request(MASTER_URL, query);
   return result;
 };
 
-const UpdateOrderToAddOrderItems = async (name, price, id, email) => {
+const UpdateOrderToAddOrderItems = async (name, price, id) => {
   const query =
     gql`
     mutation UpdateOrderWithDetail {
       updateOrder(
-        data: {
-          orderDetail: {
-            create: { OrderItem: { data: { name: "` +
+        data: {orderDetail: {create: {OrderItem: {data: {name: "` +
     name +
     `", price: ` +
     price +
-    ` } } }
-          }
-        }
-        where: { id: "` +
+    `}}}}}
+        where: {id: "` +
     id +
-    `" }
+    `"}
       ) {
         id
       }
       publishManyOrders(to: PUBLISHED) {
         count
       }
-        deleteManyUserCarts(where: {email: "` +
-    email +
-    `"}) {
-          count
-        }
     }
   `;
   const result = await request(MASTER_URL, query);
