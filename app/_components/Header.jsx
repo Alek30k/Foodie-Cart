@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
-import { Search, ShoppingCart } from "lucide-react";
+import { Search, ShoppingBag, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
@@ -65,28 +65,18 @@ const Header = () => {
               <Cart cart={cart} />
             </PopoverContent>
           </Popover>
-
-          {/* <UserButton /> */}
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <Image
-                src={user?.imageUrl}
-                alt="user"
-                width={35}
-                height={35}
-                className="rounded-full"
-              />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <Link href={"/user"}>
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-              </Link>
-              <DropdownMenuItem>My Orders</DropdownMenuItem>
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <UserButton afterSignOutUrl="/">
+            <UserButton.UserProfilePage
+              label="My Orders"
+              labelIcon={<ShoppingBag />}
+              url="my-orders"
+            >
+              <div>
+                <h1>Custom Terms Page</h1>
+                <p>This is the custom terms page</p>
+              </div>
+            </UserButton.UserProfilePage>
+          </UserButton>
         </div>
       ) : (
         <div className="flex gap-5">
