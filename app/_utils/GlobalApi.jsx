@@ -329,7 +329,7 @@ const UpdateOrderToAddOrderItems = async (name, price, id, email) => {
   return result;
 };
 
-const GetUsersOrders = async (email) => {
+const GetUserOrders = async (email) => {
   const query =
     gql`
     query UserOrders {
@@ -372,5 +372,5 @@ export default {
   getRestaurantReviews,
   CreateNewOrder,
   UpdateOrderToAddOrderItems,
-  GetUsersOrders,
+  GetUserOrders,
 };

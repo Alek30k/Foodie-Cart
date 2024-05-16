@@ -10,9 +10,11 @@ const MyOrders = () => {
   }, [user]);
 
   const GetUserOrders = () => {
-    GlobalApi.GetUsersOrders().then((resp) => {
-      console.log(resp);
-    });
+    GlobalApi.GetUserOrders(user?.primaryEmailAddress?.emailAddress).then(
+      (resp) => {
+        console.log(resp?.orders);
+      }
+    );
   };
 
   return <div className="">MyOrders</div>;
