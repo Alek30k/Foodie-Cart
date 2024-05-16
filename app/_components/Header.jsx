@@ -22,6 +22,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import MyOrders from "./MyOrders";
 
 const Header = () => {
   const { user, isSignedIn } = useUser();
@@ -68,13 +69,10 @@ const Header = () => {
           <UserButton afterSignOutUrl="/">
             <UserButton.UserProfilePage
               label="My Orders"
-              labelIcon={<ShoppingBag />}
+              labelIcon={<ShoppingBag className="w-5 h-5" />}
               url="my-orders"
             >
-              <div>
-                <h1>Custom Terms Page</h1>
-                <p>This is the custom terms page</p>
-              </div>
+              <MyOrders />
             </UserButton.UserProfilePage>
           </UserButton>
         </div>
