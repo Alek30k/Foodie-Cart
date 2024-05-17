@@ -190,10 +190,11 @@ const DeleteItemFromCart = async (id) => {
     mutation DeleteCartItem {
       deleteUserCart(where: {id: "` +
     id +
-    `"}),{
+    `"}) {
         id
-      }
+      } 
     }
+    
   `;
   const result = await request(MASTER_URL, query);
   return result;
