@@ -39,7 +39,8 @@ const MyOrders = () => {
               {moment(order?.createdAt).format("DD-MMM-yyyy")}
             </h2>
             <h2 className="flex justify-between text-sm">
-              Order Total Amount: <span>{(order?.orderAmount).toFixed(2)}</span>
+              Order Total Amount:{" "}
+              <span>${(order?.orderAmount).toFixed(2)}</span>
             </h2>
             <h2 className="flex justify-between">
               Address:{" "}
@@ -57,13 +58,18 @@ const MyOrders = () => {
                   </h2>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <div className="">
+                  <div className=" flex flex-col gap-3">
                     {order?.orderDetail?.map((item, index) => (
-                      <div className="" key={index}>
+                      <div className="flex justify-between" key={index}>
                         <h2 className="">{item?.name}</h2>
                         <h2 className="">{item?.price}</h2>
                       </div>
                     ))}
+                    <hr />
+                    <h2 className="font-bold justify-between text-md mt-2">
+                      Total Order Amount (Including Taxes):{" "}
+                      <span>${(order?.orderAmount).toFixed(2)}</span>
+                    </h2>
                   </div>
                 </AccordionContent>
               </AccordionItem>

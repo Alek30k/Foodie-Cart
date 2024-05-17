@@ -14,14 +14,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import Cart from "./Cart";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 import MyOrders from "./MyOrders";
 
 const Header = () => {

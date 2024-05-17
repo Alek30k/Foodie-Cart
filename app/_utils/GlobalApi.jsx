@@ -326,7 +326,7 @@ const GetUserOrders = async (email) => {
     query UserOrders {
       orders(where: {email: "` +
     email +
-    `"}) {
+    `"}, orderBy: publishedAt_DESC) {
         address
         createdAt
         email
