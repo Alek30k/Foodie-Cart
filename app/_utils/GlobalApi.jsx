@@ -313,6 +313,7 @@ const UpdateOrderToAddOrderItems = async (name, price, id) => {
       publishManyOrders(to: PUBLISHED) {
         count
       }
+     
     }
   `;
   const result = await request(MASTER_URL, query);
@@ -349,6 +350,29 @@ const GetUserOrders = async (email) => {
   const result = await request(MASTER_URL, query);
   return result;
 };
+const DeleteUserCarts = async (email) => {
+  if (!email || typeof email !== "string") {
+    throw new Error(
+      "Invalid email provided. Please provide a valid email string."
+    );
+  }
+
+  console.log(email);
+
+  const query =
+    gql`
+  mutation DeleteUserCart {
+    deleteManyUserCarts(where: {email: "` +
+    email +
+    `"}) {
+      count
+    }
+  }
+  `;
+
+  const result = await request(MASTER_URL, query);
+  return result;
+};
 
 export default {
   GetCategory,
@@ -363,4 +387,5 @@ export default {
   CreateNewOrder,
   UpdateOrderToAddOrderItems,
   GetUserOrders,
+  DeleteUserCarts,
 };

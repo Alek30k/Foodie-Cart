@@ -80,7 +80,6 @@ const Checkout = () => {
               item.productName,
               item.price,
               resultId
-              // user?.primaryEmailAddress.emailAddress
             ).then(
               (result) => {
                 setLoading(false);
@@ -100,6 +99,32 @@ const Checkout = () => {
           }
         );
       }
+      // GlobalApi.DeleteUserCarts(user?.primaryEmailAddress.emailAddress).then(
+      //   (result) => {
+      //     console.log(result);
+      //   }
+      // );
+
+      GlobalApi.DeleteUserCarts(user?.primaryEmailAddress.emailAddress)
+        .then((result) => {
+          if (result.success) {
+            console.log(
+              `Elementos del carrito eliminados con éxito: ${result.count}`
+            );
+            // Actualizar la interfaz de usuario o realizar otras acciones aquí
+          } else {
+            console.error(
+              `Error al eliminar elementos del carrito: ${result.error}`
+            );
+            // Manejar el error de eliminación (mostrar mensaje al usuario, etc.)
+          }
+        })
+        .catch((error) => {
+          console.error(
+            `Error inesperado al eliminar elementos del carrito: ${error.message}`
+          );
+          // Manejar errores inesperados (registrar en logs, etc.)
+        });
     });
   };
 
