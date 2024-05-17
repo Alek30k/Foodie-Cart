@@ -86,6 +86,7 @@ const Checkout = () => {
                 toast("Order Created Successfully!");
                 setUpdateCart(!updateCart);
                 router.replace("/confirmation");
+                SendEmail();
               },
               (err) => {
                 console.log(err);
@@ -201,6 +202,7 @@ const Checkout = () => {
             <Button onClick={() => addToOrder()}>
               {loading ? <Loader className="animate-spin" /> : "Make Payment"}
             </Button>
+
             {total > 5 && (
               <PayPalButtons
                 disabled={!(username && email && address && zip) || loading}

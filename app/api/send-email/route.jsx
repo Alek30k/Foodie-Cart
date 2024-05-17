@@ -9,11 +9,12 @@ export async function POST(req) {
 
   try {
     const data = await resend.emails.send({
-      from: "Foodie-Cart@alejandro.rc-app.com",
+      from: "foodie-cart-arc33k.com",
       to: [response.email],
       subject: "Foodie Cart Order Confirmation",
       react: Email(),
     });
+    console.log(data);
     return NextResponse.json({ data });
   } catch (error) {
     return NextResponse.json({ error });
