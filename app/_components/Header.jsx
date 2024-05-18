@@ -35,13 +35,32 @@ const Header = () => {
     );
   };
 
+  const [resultadosBusqueda, setResultadosBusqueda] = useState([]); // Estado para almacenar resultados de búsqueda
+
+  console.log(resultadosBusqueda);
+
+  const handleSearch = async (terminoBusqueda) => {
+    console.log(terminoBusqueda);
+    if (!terminoBusqueda) return; // Manejar término de búsqueda vacío
+
+    const respuesta = await fetch(`/api/search?term=${terminoBusqueda}`); // Reemplazar con tu punto final de la API
+    const datos = await respuesta.json();
+    setResultadosBusqueda(datos.resultados); // Actualizar estado con resultados de búsqueda
+  };
+
   return (
     <div className="flex justify-between items-center p-6 md:px-20 shadow-md">
       <Link href="/">
         <Image src="/logo.png" alt="logo" width={200} height={200} />
       </Link>
       <div className="hidden md:flex border p-2 rounded-lg bg-gray-200 w-96">
-        <input type="text" className="bg-transparent w-full" />
+        <input
+          type="text"
+          className="bg-transparent w-full"
+          placeholder="Search..."
+          onChange={(e) => handleSearch(e.target.value)}
+        />
+
         <Search className="text-primary" />
       </div>
       {isSignedIn ? (

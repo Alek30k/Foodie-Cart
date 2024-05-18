@@ -19,10 +19,6 @@ const CategoryList = () => {
     setSelectedCategory(params.get("category"));
   }, [params]);
 
-  // useEffect(() => {
-  //   setSelectedCategory("all");
-  // }, []);
-
   useEffect(() => {
     getCategoryList();
   }, []);
@@ -41,14 +37,15 @@ const CategoryList = () => {
       });
     }
   };
-  // const ScrollLeftHandler = () => {
-  //   if (listRef.current) {
-  //     listRef.current.scrollBy({
-  //       right: 200,
-  //       behavior: "smooth",
-  //     });
-  //   }
-  // };
+
+  const ScrollLeftHandler = () => {
+    if (listRef.current) {
+      listRef.current.scrollBy({
+        left: -200, // Desplazar hacia la izquierda 200px
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
     <div className="mt-10 relative">
@@ -78,7 +75,7 @@ const CategoryList = () => {
       </div>
       <ArrowLeftCircle
         className="absolute -left-10 top-9 bg-gray-500 rounded-full text-white w-8 h-8 cursor-pointer"
-        // onClick={() => ScrollLeftHandler()}
+        onClick={ScrollLeftHandler}
       />
       <ArrowRightCircle
         className="absolute -right-10 top-9 bg-gray-500 rounded-full text-white w-8 h-8 cursor-pointer"
