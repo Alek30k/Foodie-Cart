@@ -28,9 +28,9 @@ import * as React from "react";
 const { user, isSignedIn } = useUser();
 
 const { updateCart, setUpdateCart } = React.useContext(CartUpdateContext);
-const [cart, setCart] = useState([]);
+const [cart, setCart] = React.useState([]);
 
-useEffect(() => {
+React.useEffect(() => {
   user && GetUserCart();
 }, [updateCart && user]);
 
