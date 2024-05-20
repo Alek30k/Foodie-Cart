@@ -179,6 +179,9 @@ const Checkout = () => {
               Total: <span>${total.toFixed(2)}</span>
             </h2>
             {/* <Button onClick={()=>onApprove({paymentId:123})}>Payment <ArrowBigRight/></Button> */}
+            {/* <Button onClick={() => addToOrder()}>
+              {loading ? <Loader className="animate-spin" /> : "Make Payment"}
+            </Button> */}
             <Button onClick={() => addToOrder()}>
               {loading ? <Loader className="animate-spin" /> : "Make Payment"}
             </Button>
