@@ -87,13 +87,14 @@ const Checkout = () => {
                 toast("Order Created Successfully!");
                 setUpdateCart(!updateCart);
                 router.replace("/confirmation");
-                SendEmail();
+                // SendEmail();
               },
               (err) => {
                 console.log(err);
                 setLoading(false);
               }
             );
+            SendEmail(cart); // Pase el carrito como argumento aquí
           },
           (err) => {
             console.log(err);
@@ -109,7 +110,7 @@ const Checkout = () => {
     });
   };
 
-  const SendEmail = async () => {
+  const SendEmail = async (cartData) => {
     try {
       const response = await fetch("/api/send-email", {
         method: "POST",
@@ -117,6 +118,7 @@ const Checkout = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email: user?.primaryEmailAddress.emailAddress }),
+        cart: cartData,
       });
 
       if (!response.ok) {

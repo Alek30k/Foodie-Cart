@@ -1,8 +1,3 @@
-"use client";
-
-import { CartUpdateContext } from "@/app/_context/CartUpdateContext";
-import GlobalApi from "@/app/_utils/GlobalApi";
-import { useUser } from "@clerk/nextjs";
 import {
   Body,
   Container,
@@ -17,34 +12,18 @@ import {
   Section,
   Text,
 } from "@react-email/components";
-import * as React from "react";
 
-// const items = [
-//   { name: "Apple", quantity: 2, price: 1.99 },
-//   { name: "Banana", quantity: 3, price: 0.99 },
-//   { name: "Orange", quantity: 1, price: 1.49 },
-// ];
-
-const { user, isSignedIn } = useUser();
-
-const { updateCart, setUpdateCart } = React.useContext(CartUpdateContext);
-const [cart, setCart] = React.useState([]);
-
-React.useEffect(() => {
-  user && GetUserCart();
-}, [updateCart && user]);
-
-const GetUserCart = () => {
-  GlobalApi.GetUserCart(user?.primaryEmailAddress.emailAddress).then((resp) => {
-    setCart(resp?.userCarts);
-  });
-};
+const items = [
+  { name: "Apple", quantity: 2, price: 1.99 },
+  { name: "Banana", quantity: 3, price: 0.99 },
+  { name: "Orange", quantity: 1, price: 1.49 },
+];
 
 const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "";
 
-export const Email = () => (
+export const Email = ({ cart }) => (
   <Html>
     <Head />
     <Preview>Apple Receipt</Preview>
@@ -75,7 +54,7 @@ export const Email = () => (
             </tr>
           </thead>
           <tbody>
-            {cart.map((item, index) => (
+            {cart?.map((item, index) => (
               <tr key={index}>
                 <td style={thTd}>{item.name}</td>
                 <td style={thTd}>{item.quantity}</td>
