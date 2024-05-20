@@ -35,10 +35,6 @@ const Header = () => {
     );
   };
 
-  const [resultadosBusqueda, setResultadosBusqueda] = useState([]); // Estado para almacenar resultados de búsqueda
-
-  console.log(resultadosBusqueda);
-
   const handleSearch = async (terminoBusqueda) => {
     console.log(terminoBusqueda);
     if (!terminoBusqueda) return; // Manejar término de búsqueda vacío
