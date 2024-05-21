@@ -76,18 +76,22 @@ export const Email = (cart, total) => (
 
         <Text style={footerTextCenter}>
           {" "}
-          You have the option to stop receiving email receipts for your
-          subscription renewals. If you have opted out, you can still view your
-          receipts in your account under Purchase History. To manage receipts or
-          to opt in again, go to{" "}
-          <Link href="https://finance-app.itunes.apple.com/account/subscriptions?unsupportedRedirectUrl=https://apps.apple.com/US/invoice">
-            Account Settings.
-          </Link>
+          En Foodie Cart podés dejar volar tu imaginación porque ahora todo lo
+          que quieras lo llevamos directo a donde estés, ¡en minutos! Pedí a los
+          mejores restaurantes, hacé el pedido de tus platos favoritos y ¡mucho
+          más! En simples pasos podés tener tu sabrosos gustos directamente en
+          tu puerta: descubrí, pedí y recibí a domicilio con Foodie Cart
+          <Link href="https://foodie-cart-steel.vercel.app/">Foodie Cart</Link>
         </Text>
         <Section>
           <Row>
             <Column align="center" style={footerIcon}>
-              <Img src="/logo.png" width="24" height="24" alt="logo" />
+              <Img
+                src="https://github.com/Alek30k/Foodie-Cart/assets/101005998/801c18c7-55b6-43db-939d-4b061b079153"
+                width="24"
+                height="24"
+                alt="logo"
+              />
             </Column>
           </Row>
         </Section>
@@ -105,44 +109,15 @@ export const Email = (cart, total) => (
           </Link>
         </Text>
         <Text style={footerCopyright}>
-          Copyright © 2023 Apple Inc. <br />{" "}
-          <Link href="https://www.apple.com/legal/">All rights reserved</Link>
+          Copyright © 2023 Foodie Cart <br />{" "}
+          <Link href="https://foodie-cart-steel.vercel.app/">
+            All rights reserved
+          </Link>
         </Text>
       </Container>
     </Body>
   </Html>
 );
-
-// // export default Email;
-// const Email = (cart) => {
-//   console.log(cart);
-//   if (!cart) {
-//     return <p>No hay datos de compra disponibles.</p>; // Maneja el caso donde cart está ausente
-//   }
-//   return (
-//     <div className="">
-//       {/* <table>
-//         <thead className="p-[8px] border border-gray-400">
-//           <tr>
-//             <th style={thTd}>Item</th>
-//             <th style={thTd}>Restaurant</th>
-//             <th style={thTd}>Price</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {cart?.map((item, index) => (
-//             <tr key={index}>
-//               <td style={thTd}>{item.productName}</td>
-//               <td style={thTd}>{item.restaurant.name}</td>
-//               <td style={thTd}>{item.price.toFixed(2)}</td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table> */}
-//       <h2 className="">{cart[0]?.productDescription}</h2>
-//     </div>
-//   );
-// };
 
 export default Email;
 
