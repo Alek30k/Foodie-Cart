@@ -35,7 +35,7 @@ export const Email = (cart, total) => (
             Your order has benn confirmed and will be delivered shortly.
           </Text>
         </Section>
-        <table style={table}>
+        {/* <table style={table}>
           <thead className="p-[8px] border border-gray-400">
             <tr>
               <th style={thTd}>Product Name</th>
@@ -52,7 +52,7 @@ export const Email = (cart, total) => (
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> */}
 
         <Hr style={productPriceLine} />
         <Section align="center">
@@ -62,7 +62,8 @@ export const Email = (cart, total) => (
             </Column>
             <Column style={productPriceVerticalLine}></Column>
             <Column style={productPriceLargeWrapper}>
-              <Text style={productPriceLarge}>${total.toFixed(2)}</Text>
+              {/* <Text style={productPriceLarge}>${total.toFixed(2)}</Text> */}
+              <Text style={productPriceLarge}>$123</Text>
             </Column>
           </Row>
         </Section>
@@ -88,8 +89,8 @@ export const Email = (cart, total) => (
             <Column align="center" style={footerIcon}>
               <Img
                 src="https://github.com/Alek30k/Foodie-Cart/assets/101005998/801c18c7-55b6-43db-939d-4b061b079153"
-                width="24"
-                height="24"
+                width="326"
+                height="56"
                 alt="logo"
               />
             </Column>
