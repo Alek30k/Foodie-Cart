@@ -114,8 +114,11 @@
 // );
 
 // export default Email;
-const Email = (cart) => {
+const Email = ({ cart }) => {
   console.log(cart);
+  if (!cart) {
+    return <p>No hay datos de compra disponibles.</p>; // Maneja el caso donde cart está ausente
+  }
   return (
     <div className="">
       <table>
