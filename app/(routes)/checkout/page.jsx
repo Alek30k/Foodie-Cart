@@ -88,13 +88,13 @@ const Checkout = () => {
                 setUpdateCart(!updateCart);
                 router.replace("/confirmation");
                 // SendEmail();
+                SendEmail(cart);
               },
               (err) => {
                 console.log(err);
                 setLoading(false);
               }
             );
-            SendEmail(cart); // Pase el carrito como argumento aquí
           },
           (err) => {
             console.log(err);
@@ -117,8 +117,10 @@ const Checkout = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email: user?.primaryEmailAddress.emailAddress }),
-        cart: cartData,
+        body: JSON.stringify({
+          email: user?.primaryEmailAddress.emailAddress,
+          cart: cartData,
+        }),
       });
 
       if (!response.ok) {
