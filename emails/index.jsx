@@ -1,147 +1,148 @@
-// import {
-//   Body,
-//   Container,
-//   Column,
-//   Head,
-//   Hr,
-//   Html,
-//   Img,
-//   Link,
-//   Preview,
-//   Row,
-//   Section,
-//   Text,
-// } from "@react-email/components";
+import {
+  Body,
+  Container,
+  Column,
+  Head,
+  Hr,
+  Html,
+  Img,
+  Link,
+  Preview,
+  Row,
+  Section,
+  Text,
+} from "@react-email/components";
 
-// export const Email = (cart) => (
-//   <Html>
-//     <Head />
-//     <Preview>Apple Receipt</Preview>
+export const Email = (cart, total) => (
+  <Html>
+    <Head />
+    <Preview>Apple Receipt</Preview>
 
-//     <Body style={main}>
-//       <Container style={container}>
-//         <Section>
-//           <Row>
-//             <Column align="center" style={tableCell}>
-//               <Text style={heading}>Food Order Confirmation</Text>
-//             </Column>
-//           </Row>
-//         </Section>
-//         <Section>
-//           <Text style={cupomText}>Thank you for your order!</Text>
-//         </Section>
-//         <Section>
-//           <Text align="center" style={supStyle}>
-//             Your order has benn confirmed and will be delivered shortly.
-//           </Text>
-//         </Section>
-// <table style={table}>
-//   <thead className="p-[8px] border border-gray-400">
-//     <tr>
-//       <th style={thTd}>Item</th>
-//       <th style={thTd}>Restaurant</th>
-//       <th style={thTd}>Price</th>
-//     </tr>
-//   </thead>
-//   <tbody>
-//     {cart?.map((item, index) => (
-//       <tr key={index}>
-//         <td style={thTd}>{item.productName}</td>
-//         <td style={thTd}>{item.restaurant.name}</td>
-//         <td style={thTd}>{item.price.toFixed(2)}</td>
-//       </tr>
-//     ))}
-//   </tbody>
-// </table>
-
-//         <Hr style={productPriceLine} />
-//         <Section align="center">
-//           <Row>
-//             <Column style={tableCell} align="center">
-//               <Text style={productPriceTotal}>TOTAL</Text>
-//             </Column>
-//             <Column style={productPriceVerticalLine}></Column>
-//             <Column style={productPriceLargeWrapper}>
-//               <Text style={productPriceLarge}>$14.99</Text>
-//             </Column>
-//           </Row>
-//         </Section>
-//         <Hr />
-
-//         <Section>
-//           <Text align="center" style={InfoStyle}>
-//             Delivery Information
-//           </Text>
-//         </Section>
-
-//         <Text style={footerTextCenter}>
-//           {" "}
-//           You have the option to stop receiving email receipts for your
-//           subscription renewals. If you have opted out, you can still view your
-//           receipts in your account under Purchase History. To manage receipts or
-//           to opt in again, go to{" "}
-//           <Link href="https://finance-app.itunes.apple.com/account/subscriptions?unsupportedRedirectUrl=https://apps.apple.com/US/invoice">
-//             Account Settings.
-//           </Link>
-//         </Text>
-//         <Section>
-//           <Row>
-//             <Column align="center" style={footerIcon}>
-//               <Img src="/logo.png" width="24" height="24" alt="logo" />
-//             </Column>
-//           </Row>
-//         </Section>
-//         <Text style={footerLinksWrapper}>
-//           <Link href="https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/accountSummary?mt=8">
-//             Account Settings
-//           </Link>{" "}
-//           •{" "}
-//           <Link href="https://www.apple.com/legal/itunes/us/sales.html">
-//             Terms of Sale
-//           </Link>{" "}
-//           •{" "}
-//           <Link href="https://www.apple.com/legal/privacy/">
-//             Privacy Policy{" "}
-//           </Link>
-//         </Text>
-//         <Text style={footerCopyright}>
-//           Copyright © 2023 Apple Inc. <br />{" "}
-//           <Link href="https://www.apple.com/legal/">All rights reserved</Link>
-//         </Text>
-//       </Container>
-//     </Body>
-//   </Html>
-// );
-
-// export default Email;
-const Email = ({ cart }) => {
-  console.log(cart);
-  if (!cart) {
-    return <p>No hay datos de compra disponibles.</p>; // Maneja el caso donde cart está ausente
-  }
-  return (
-    <div className="">
-      <table>
-        <thead className="p-[8px] border border-gray-400">
-          <tr>
-            <th style={thTd}>Item</th>
-            <th style={thTd}>Restaurant</th>
-            <th style={thTd}>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cart?.map((item, index) => (
-            <tr key={index}>
-              <td style={thTd}>{item.productName}</td>
-              <td style={thTd}>{item.restaurant.name}</td>
-              <td style={thTd}>{item.price.toFixed(2)}</td>
+    <Body style={main}>
+      <Container style={container}>
+        <Section>
+          <Row>
+            <Column align="center" style={tableCell}>
+              <Text style={heading}>Food Order Confirmation</Text>
+            </Column>
+          </Row>
+        </Section>
+        <Section>
+          <Text style={cupomText}>Thank you for your order!</Text>
+        </Section>
+        <Section>
+          <Text align="center" style={supStyle}>
+            Your order has benn confirmed and will be delivered shortly.
+          </Text>
+        </Section>
+        <table style={table}>
+          <thead className="p-[8px] border border-gray-400">
+            <tr>
+              <th style={thTd}>Product Name</th>
+              <th style={thTd}>Restaurant</th>
+              <th style={thTd}>Price</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
+          </thead>
+          <tbody>
+            {cart?.map((item, index) => (
+              <tr key={index}>
+                <td style={thTd}>{item.productName}</td>
+                <td style={thTd}>{item.restaurant.name}</td>
+                <td style={thTd}>{item.price.toFixed(2)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <Hr style={productPriceLine} />
+        <Section align="center">
+          <Row>
+            <Column style={tableCell} align="center">
+              <Text style={productPriceTotal}>TOTAL</Text>
+            </Column>
+            <Column style={productPriceVerticalLine}></Column>
+            <Column style={productPriceLargeWrapper}>
+              <Text style={productPriceLarge}>${total.toFixed(2)}</Text>
+            </Column>
+          </Row>
+        </Section>
+        <Hr />
+
+        <Section>
+          <Text align="center" style={InfoStyle}>
+            Delivery Information
+          </Text>
+        </Section>
+
+        <Text style={footerTextCenter}>
+          {" "}
+          You have the option to stop receiving email receipts for your
+          subscription renewals. If you have opted out, you can still view your
+          receipts in your account under Purchase History. To manage receipts or
+          to opt in again, go to{" "}
+          <Link href="https://finance-app.itunes.apple.com/account/subscriptions?unsupportedRedirectUrl=https://apps.apple.com/US/invoice">
+            Account Settings.
+          </Link>
+        </Text>
+        <Section>
+          <Row>
+            <Column align="center" style={footerIcon}>
+              <Img src="/logo.png" width="24" height="24" alt="logo" />
+            </Column>
+          </Row>
+        </Section>
+        <Text style={footerLinksWrapper}>
+          <Link href="https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/accountSummary?mt=8">
+            Account Settings
+          </Link>{" "}
+          •{" "}
+          <Link href="https://www.apple.com/legal/itunes/us/sales.html">
+            Terms of Sale
+          </Link>{" "}
+          •{" "}
+          <Link href="https://www.apple.com/legal/privacy/">
+            Privacy Policy{" "}
+          </Link>
+        </Text>
+        <Text style={footerCopyright}>
+          Copyright © 2023 Apple Inc. <br />{" "}
+          <Link href="https://www.apple.com/legal/">All rights reserved</Link>
+        </Text>
+      </Container>
+    </Body>
+  </Html>
+);
+
+// // export default Email;
+// const Email = (cart) => {
+//   console.log(cart);
+//   if (!cart) {
+//     return <p>No hay datos de compra disponibles.</p>; // Maneja el caso donde cart está ausente
+//   }
+//   return (
+//     <div className="">
+//       {/* <table>
+//         <thead className="p-[8px] border border-gray-400">
+//           <tr>
+//             <th style={thTd}>Item</th>
+//             <th style={thTd}>Restaurant</th>
+//             <th style={thTd}>Price</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {cart?.map((item, index) => (
+//             <tr key={index}>
+//               <td style={thTd}>{item.productName}</td>
+//               <td style={thTd}>{item.restaurant.name}</td>
+//               <td style={thTd}>{item.price.toFixed(2)}</td>
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table> */}
+//       <h2 className="">{cart[0]?.productDescription}</h2>
+//     </div>
+//   );
+// };
 
 export default Email;
 

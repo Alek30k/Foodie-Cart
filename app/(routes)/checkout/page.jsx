@@ -88,7 +88,7 @@ const Checkout = () => {
                 setUpdateCart(!updateCart);
                 router.replace("/confirmation");
                 // SendEmail();
-                SendEmail(cart);
+                SendEmail(cart, total);
               },
               (err) => {
                 console.log(err);
@@ -110,7 +110,8 @@ const Checkout = () => {
     });
   };
 
-  const SendEmail = async (cartData) => {
+  const SendEmail = async (cartData, total) => {
+    console.log(cartData, total);
     try {
       const response = await fetch("/api/send-email", {
         method: "POST",
@@ -120,6 +121,7 @@ const Checkout = () => {
         body: JSON.stringify({
           email: user?.primaryEmailAddress.emailAddress,
           cart: cartData,
+          total: total,
         }),
       });
 
