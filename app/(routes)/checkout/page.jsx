@@ -137,7 +137,7 @@ const Checkout = () => {
 
   return (
     <div className="">
-      <h2 className="font-bold text-2xl my-5">Checkaut</h2>
+      <h2 className="font-bold text-2xl my-5 ">Checkaut</h2>
       <div className="p-5 px-5 md:px-10 grid grid-cols-1 md:grid-cols-3 py-8 ">
         <div className="md:col-span-2 md:mx-20 mb-5">
           <h2 className="font-bold text-3xl">Billing Details</h2>
