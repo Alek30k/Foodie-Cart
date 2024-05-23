@@ -17,10 +17,6 @@ const BusinessList = () => {
     params && getBusinessList(params.get("category"));
   }, [params]);
 
-  // useEffect(() => {
-  //   getBusinessList("all");
-  // }, []);
-
   const getBusinessList = (category_) => {
     setLoading(true);
     GlobalApi.GetBusiness(category_).then((resp) => {
@@ -28,6 +24,14 @@ const BusinessList = () => {
       setLoading(false);
     });
   };
+
+  useEffect(() => {
+    // Set the default category to "all" even if no category is present in the URL
+    const defaultCategory = "all";
+    setCategory(params.get("category") || defaultCategory);
+    getBusinessList(defaultCategory);
+  }, []);
+
   return (
     <div className="mt-5">
       <h2 className="font-bold text-2xl">Popular {category} Restaurants</h2>
