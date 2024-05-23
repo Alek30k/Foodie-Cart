@@ -54,7 +54,7 @@ const MenuSection = ({ restaurant }) => {
   return (
     <div className="">
       <div className="grid grid-cols-4 mt-2 ">
-        <div className="hidden md:flex flex-col mr-10 gap-2">
+        <div className=" md:flex flex-col mr-10 gap-2">
           {restaurant?.menu?.map((item, index) => (
             <Button
               key={index}
