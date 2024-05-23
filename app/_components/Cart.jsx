@@ -43,7 +43,7 @@ const Cart = ({ cart }) => {
         {cart &&
           cart.map((item, index) => (
             <div
-              className="flex justify-between gap-8 items-center cursor-pointer"
+              className="flex justify-between md:gap-8 items-center cursor-pointer"
               key={index}
             >
               <div className="flex gap-2 items-center">
@@ -55,7 +55,7 @@ const Cart = ({ cart }) => {
                   className="h-[40px] w-[40px] rounded-lg object-cover"
                 />
                 <h2 className="text-sm">{item?.productName}</h2>
-                <p className="text-sm text-primary">
+                <p className="text-sm text-primary hidden md:flex">
                   -{item?.restaurant?.name}
                 </p>
               </div>
