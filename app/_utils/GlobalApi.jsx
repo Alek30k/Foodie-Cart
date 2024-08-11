@@ -135,6 +135,7 @@ const AddToCart = async (data) => {
 };
 
 const GetUserCart = async (userEmail) => {
+  console.log(userEmail);
   const query =
     gql`
     query GetUserCart {
@@ -143,10 +144,10 @@ const GetUserCart = async (userEmail) => {
     `"}) {
         id
         price
-        productDescription
-        productImage
-        productName
-        restaurant {
+        // productDescription
+        // productImage
+        // productName
+        // restaurant {
           name
           banner {
             url
