@@ -144,10 +144,10 @@ const GetUserCart = async (userEmail) => {
     `"}) {
         id
         price
-        // productDescription
-        // productImage
-        // productName
-        // restaurant {
+        productDescription
+        productImage
+        productName
+        restaurant {
           name
           banner {
             url
